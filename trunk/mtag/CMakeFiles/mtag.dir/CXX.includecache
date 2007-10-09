@@ -11,6 +11,8 @@ tag.h
 -
 unistd.h
 -
+sqlite3.h
+-
 
 /usr/include/_G_config.h
 bits/types.h
@@ -242,6 +244,10 @@ sys/ucontext.h
 bits/pthreadtypes.h
 -
 bits/sigthread.h
+-
+
+/usr/include/sqlite3.h
+stdarg.h
 -
 
 /usr/include/stdio.h

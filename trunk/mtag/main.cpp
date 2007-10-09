@@ -14,9 +14,12 @@
 #include <unistd.h>
 //#include <getopt.h>
 
+/* For sqlite */
+#include <sqlite3.h>
+
 using namespace std;
 
-int getTag(char* filename, TagLib::String tags[])
+int getTag(char* filename, vector<TagLib::String> tags)
 {
 	TagLib::FileRef f(filename);
 	if(!f.isNull() && f.tag())
@@ -31,6 +34,7 @@ int getTag(char* filename, TagLib::String tags[])
 			int tagEnd = sTags.find(",", tagStart);
 			if (tagEnd < 0) tagEnd = 0xffffffff;
 			TagLib::String thisTag = sTags.substr(tagStart, tagEnd - tagStart);
+			tags.insert(tags.begin(), thisTag);
 			cout << thisTag << endl;
 		}
 		
@@ -64,7 +68,12 @@ int main(int argc, char *argv[])
 
 	for(int i = 1; i < argc; i++)
 	{
-		getTag(argv[i],NULL);
+		vector<TagLib::String> tags;
+		getTag(argv[i], tags);
+		for (int i = 0; i <= tags.size(); i++)
+		{
+			cout << tags[i] << endl;
+		}
 	}
 
 	return EXIT_SUCCESS;
