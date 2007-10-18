@@ -5,6 +5,8 @@
 RELEASE="$1"
 echo making release: ${RELEASE}
 
+svn up
+
 (cd trunk/mtag ; make clean)
 svn cp trunk/mtag tags/mtag-${RELEASE}
 svn --force rm tags/mtag-${RELEASE}/*~
