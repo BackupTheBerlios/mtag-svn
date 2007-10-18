@@ -24,6 +24,7 @@ gpg -b mtag-${RELEASE}.tar.gz
 svn add mtag-${RELEASE}.tar.gz*
 rm -rf mtag-${RELEASE}
 
+cd ..
 svn cp ebuilds/mtag-base.ebuild ebuilds/mtag-${RELEASE}.ebuild
 
 
