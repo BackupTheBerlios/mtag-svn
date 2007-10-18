@@ -16,15 +16,16 @@
 /* For taglib */
 #include <fileref.h>
 #include <tag.h>
+#include <tstringlist.h>
 
 using namespace std;
 
-int meta_getTags(char* filename, vector<TagLib::String> *tags)
+int meta_getTags(char* filename, TagLib::StringList *tags)
 {
 	return getTags(filename, tags);
 }
 
-int meta_setTags(char* filename, vector<TagLib::String> *tags)
+int meta_setTags(char* filename, TagLib::StringList tags)
 {
 	return setTags(filename, tags);
 }
@@ -38,18 +39,20 @@ int meta_clearTags(char* filename)
 
 int meta_addTag(char* filename, TagLib::String tag)
 {
-	vector<TagLib::String> tags;
+	TagLib::StringList tags;
 	if (meta_getTags(filename, &tags) != EXIT_SUCCESS)
 		return EXIT_FAILURE;
-	tags.insert(tags.end(), optarg);
-	return meta_setTags(filename, &tags);
+	tags.append(optarg);
+	return meta_setTags(filename, tags);
 }
 
 int meta_delTag(char* filename, TagLib::String tag)
 {
-	vector<TagLib::String> tags;
+	TagLib::StringList tags;
 	if (meta_getTags(filename, &tags) != EXIT_SUCCESS)
 		return EXIT_FAILURE;
-	
-	return meta_setTags(filename, &tags);
+	TagLib::StringList::Iterator it = tags.find(tag);
+	if (it != tags.end())
+		tags.erase(it);
+	return meta_setTags(filename, tags);
 }

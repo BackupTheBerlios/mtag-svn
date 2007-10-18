@@ -15,9 +15,10 @@
 /* For taglib */
 #include <fileref.h>
 #include <tag.h>
+#include <tstringlist.h>
 
 using namespace std;
 
-int getTags(char* filename, vector<TagLib::String> *tags);
-int setTags(char* filename, vector<TagLib::String> *tags);
+int getTags(char* filename, TagLib::StringList *tags);
+int setTags(char* filename, TagLib::StringList tags);
 int clearTags(char* filename);

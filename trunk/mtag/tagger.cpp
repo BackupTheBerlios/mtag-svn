@@ -21,18 +21,21 @@
 /* For taglib */
 #include <fileref.h>
 #include <tag.h>
+#include <tstringlist.h>
 
 using namespace std;
 
-int getTags(char* filename, vector<TagLib::String> *tags)
+int getTags(char* filename, TagLib::StringList *tags)
 {
 	TagLib::FileRef f(filename);
 	if(!f.isNull() && f.tag())
 	{
 		TagLib::Tag *tag = f.tag();
 		TagLib::String sTags = tag->comment();
-		if (!tags)
+		if (tags == NULL)
+		{
 			return EXIT_SUCCESS;
+		}
 		int tagStart = 0;
 		while ((tagStart = sTags.find("tag:", tagStart)) >= 0)
 		{
@@ -40,14 +43,14 @@ int getTags(char* filename, vector<TagLib::String> *tags)
 			int tagEnd = sTags.find(",", tagStart);
 			if (tagEnd < 0) tagEnd = 0xffffffff;
 			TagLib::String thisTag = sTags.substr(tagStart, tagEnd - tagStart);
-			tags->insert(tags->end(), thisTag);
+			tags->append(thisTag);
 		}
 		return EXIT_SUCCESS;
 	}
-	return -1;
+	return EXIT_FAILURE;
 }
 
-int setTags(char* filename, vector<TagLib::String> *tags)
+int setTags(char* filename, TagLib::StringList tags)
 {
 	TagLib::FileRef f(filename);
 	if(!f.isNull() && f.tag())
@@ -55,24 +58,24 @@ int setTags(char* filename, vector<TagLib::String> *tags)
 		TagLib::Tag *tag = f.tag();
 
 		TagLib::String sTags;
-		if (tags)
-		{
-			for (vector<TagLib::String>::iterator it = tags->begin(); it!=tags->end(); ++it)
+		try {
+			if (!tags.isEmpty())
 			{
-				if (it != tags->begin())
-					sTags.append(", ");
 				sTags.append("tag:");
-				sTags.append(*it);
+				sTags.append(tags.toString(", tag:"));
 			}
+		} catch (int e) {
+			delete tag;
+			return EXIT_FAILURE;
 		}
 		tag->setComment(sTags);
 		f.save();
 		return EXIT_SUCCESS;
 	}
-	return -1;
+	return EXIT_FAILURE;
 }
 
 int clearTags(char* filename)
 {
-	setTags(filename, NULL);
+	setTags(filename, TagLib::StringList());
 }

@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 {
 	opterr = 0;
 	int optchar;
-	optchar = getopt(argc, argv, "+a:r:cs:");
+	optchar = getopt(argc, argv, "+a:d:cs:");
 	
 	switch(optchar)
 	{
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 				meta_clearTags(argv[i]);
 			}
 			break;
-		case 'r':
+		case 'd':
 			for(int i = 2; i < argc; i++)
 			{
 				meta_delTag(argv[i], optarg);
@@ -59,18 +59,12 @@ int main(int argc, char *argv[])
 
 	for(int i = 1; i < argc; i++)
 	{
-		vector<TagLib::String> tags;
-		if (meta_getTags(argv[i], &tags) < 0)
-			continue;
-		cout << "track: " << argv[i] << endl;
-		cout << "tags: ";
-		for (vector<TagLib::String>::iterator it = tags.begin(); it!=tags.end(); ++it)
+		TagLib::StringList tags;
+		if (meta_getTags(argv[i], &tags) == EXIT_SUCCESS)
 		{
-			if (it != tags.begin())
-				cout << ", ";
-			cout << *it;
+			cout << "track: " << argv[i] << endl;
+			cout << "tags: " << tags.toString(", ") << endl;
 		}
-		cout << endl;
 	}
 
 	return EXIT_SUCCESS;
