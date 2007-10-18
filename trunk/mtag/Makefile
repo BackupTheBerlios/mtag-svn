@@ -101,6 +101,30 @@ mtag/fast:
 	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/build
 
 # target to build an object file
+crawler.o:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/crawler.o
+
+# target to preprocess a source file
+crawler.i:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/crawler.i
+
+# target to generate assembly for a file
+crawler.s:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/crawler.s
+
+# target to build an object file
+db.o:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/db.o
+
+# target to preprocess a source file
+db.i:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/db.i
+
+# target to generate assembly for a file
+db.s:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/db.s
+
+# target to build an object file
 main.o:
 	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/main.o
 
@@ -112,6 +136,30 @@ main.i:
 main.s:
 	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/main.s
 
+# target to build an object file
+meta.o:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/meta.o
+
+# target to preprocess a source file
+meta.i:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/meta.i
+
+# target to generate assembly for a file
+meta.s:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/meta.s
+
+# target to build an object file
+tagger.o:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/tagger.o
+
+# target to preprocess a source file
+tagger.i:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/tagger.i
+
+# target to generate assembly for a file
+tagger.s:
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/tagger.s
+
 # Help Target
 help::
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -121,9 +169,21 @@ help::
 	@echo "... edit_cache"
 	@echo "... mtag"
 	@echo "... rebuild_cache"
+	@echo "... crawler.o"
+	@echo "... crawler.i"
+	@echo "... crawler.s"
+	@echo "... db.o"
+	@echo "... db.i"
+	@echo "... db.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... meta.o"
+	@echo "... meta.i"
+	@echo "... meta.s"
+	@echo "... tagger.o"
+	@echo "... tagger.i"
+	@echo "... tagger.s"
 
 
 

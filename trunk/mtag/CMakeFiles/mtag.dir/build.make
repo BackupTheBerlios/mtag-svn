@@ -72,6 +72,102 @@ CMakeFiles/mtag.dir/main.o.provides: CMakeFiles/mtag.dir/main.o.requires
 
 CMakeFiles/mtag.dir/main.o.provides.build: CMakeFiles/mtag.dir/main.o
 
+CMakeFiles/mtag.dir/depend.make.mark: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/depend.make.mark: tagger.cpp
+
+CMakeFiles/mtag.dir/tagger.o: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/tagger.o: tagger.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/flx/dev/mtag/trunk/mtag/CMakeFiles $(CMAKE_PROGRESS_2)
+	@echo "Building CXX object CMakeFiles/mtag.dir/tagger.o"
+	/usr/bin/c++   $(CXX_FLAGS) -o CMakeFiles/mtag.dir/tagger.o -c /home/flx/dev/mtag/trunk/mtag/tagger.cpp
+
+CMakeFiles/mtag.dir/tagger.i: cmake_force
+	@echo "Preprocessing CXX source to CMakeFiles/mtag.dir/tagger.i"
+	/usr/bin/c++  $(CXX_FLAGS) -E /home/flx/dev/mtag/trunk/mtag/tagger.cpp > CMakeFiles/mtag.dir/tagger.i
+
+CMakeFiles/mtag.dir/tagger.s: cmake_force
+	@echo "Compiling CXX source to assembly CMakeFiles/mtag.dir/tagger.s"
+	/usr/bin/c++  $(CXX_FLAGS) -S /home/flx/dev/mtag/trunk/mtag/tagger.cpp -o CMakeFiles/mtag.dir/tagger.s
+
+CMakeFiles/mtag.dir/tagger.o.requires:
+
+CMakeFiles/mtag.dir/tagger.o.provides: CMakeFiles/mtag.dir/tagger.o.requires
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/tagger.o.provides.build
+
+CMakeFiles/mtag.dir/tagger.o.provides.build: CMakeFiles/mtag.dir/tagger.o
+
+CMakeFiles/mtag.dir/depend.make.mark: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/depend.make.mark: crawler.cpp
+
+CMakeFiles/mtag.dir/crawler.o: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/crawler.o: crawler.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/flx/dev/mtag/trunk/mtag/CMakeFiles $(CMAKE_PROGRESS_3)
+	@echo "Building CXX object CMakeFiles/mtag.dir/crawler.o"
+	/usr/bin/c++   $(CXX_FLAGS) -o CMakeFiles/mtag.dir/crawler.o -c /home/flx/dev/mtag/trunk/mtag/crawler.cpp
+
+CMakeFiles/mtag.dir/crawler.i: cmake_force
+	@echo "Preprocessing CXX source to CMakeFiles/mtag.dir/crawler.i"
+	/usr/bin/c++  $(CXX_FLAGS) -E /home/flx/dev/mtag/trunk/mtag/crawler.cpp > CMakeFiles/mtag.dir/crawler.i
+
+CMakeFiles/mtag.dir/crawler.s: cmake_force
+	@echo "Compiling CXX source to assembly CMakeFiles/mtag.dir/crawler.s"
+	/usr/bin/c++  $(CXX_FLAGS) -S /home/flx/dev/mtag/trunk/mtag/crawler.cpp -o CMakeFiles/mtag.dir/crawler.s
+
+CMakeFiles/mtag.dir/crawler.o.requires:
+
+CMakeFiles/mtag.dir/crawler.o.provides: CMakeFiles/mtag.dir/crawler.o.requires
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/crawler.o.provides.build
+
+CMakeFiles/mtag.dir/crawler.o.provides.build: CMakeFiles/mtag.dir/crawler.o
+
+CMakeFiles/mtag.dir/depend.make.mark: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/depend.make.mark: db.cpp
+
+CMakeFiles/mtag.dir/db.o: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/db.o: db.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/flx/dev/mtag/trunk/mtag/CMakeFiles $(CMAKE_PROGRESS_4)
+	@echo "Building CXX object CMakeFiles/mtag.dir/db.o"
+	/usr/bin/c++   $(CXX_FLAGS) -o CMakeFiles/mtag.dir/db.o -c /home/flx/dev/mtag/trunk/mtag/db.cpp
+
+CMakeFiles/mtag.dir/db.i: cmake_force
+	@echo "Preprocessing CXX source to CMakeFiles/mtag.dir/db.i"
+	/usr/bin/c++  $(CXX_FLAGS) -E /home/flx/dev/mtag/trunk/mtag/db.cpp > CMakeFiles/mtag.dir/db.i
+
+CMakeFiles/mtag.dir/db.s: cmake_force
+	@echo "Compiling CXX source to assembly CMakeFiles/mtag.dir/db.s"
+	/usr/bin/c++  $(CXX_FLAGS) -S /home/flx/dev/mtag/trunk/mtag/db.cpp -o CMakeFiles/mtag.dir/db.s
+
+CMakeFiles/mtag.dir/db.o.requires:
+
+CMakeFiles/mtag.dir/db.o.provides: CMakeFiles/mtag.dir/db.o.requires
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/db.o.provides.build
+
+CMakeFiles/mtag.dir/db.o.provides.build: CMakeFiles/mtag.dir/db.o
+
+CMakeFiles/mtag.dir/depend.make.mark: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/depend.make.mark: meta.cpp
+
+CMakeFiles/mtag.dir/meta.o: CMakeFiles/mtag.dir/flags.make
+CMakeFiles/mtag.dir/meta.o: meta.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/flx/dev/mtag/trunk/mtag/CMakeFiles $(CMAKE_PROGRESS_5)
+	@echo "Building CXX object CMakeFiles/mtag.dir/meta.o"
+	/usr/bin/c++   $(CXX_FLAGS) -o CMakeFiles/mtag.dir/meta.o -c /home/flx/dev/mtag/trunk/mtag/meta.cpp
+
+CMakeFiles/mtag.dir/meta.i: cmake_force
+	@echo "Preprocessing CXX source to CMakeFiles/mtag.dir/meta.i"
+	/usr/bin/c++  $(CXX_FLAGS) -E /home/flx/dev/mtag/trunk/mtag/meta.cpp > CMakeFiles/mtag.dir/meta.i
+
+CMakeFiles/mtag.dir/meta.s: cmake_force
+	@echo "Compiling CXX source to assembly CMakeFiles/mtag.dir/meta.s"
+	/usr/bin/c++  $(CXX_FLAGS) -S /home/flx/dev/mtag/trunk/mtag/meta.cpp -o CMakeFiles/mtag.dir/meta.s
+
+CMakeFiles/mtag.dir/meta.o.requires:
+
+CMakeFiles/mtag.dir/meta.o.provides: CMakeFiles/mtag.dir/meta.o.requires
+	$(MAKE) -f CMakeFiles/mtag.dir/build.make CMakeFiles/mtag.dir/meta.o.provides.build
+
+CMakeFiles/mtag.dir/meta.o.provides.build: CMakeFiles/mtag.dir/meta.o
+
 CMakeFiles/mtag.dir/depend: CMakeFiles/mtag.dir/depend.make.mark
 
 CMakeFiles/mtag.dir/depend.make.mark:
@@ -80,12 +176,20 @@ CMakeFiles/mtag.dir/depend.make.mark:
 
 # Object files for target mtag
 mtag_OBJECTS = \
-"CMakeFiles/mtag.dir/main.o"
+"CMakeFiles/mtag.dir/main.o" \
+"CMakeFiles/mtag.dir/tagger.o" \
+"CMakeFiles/mtag.dir/crawler.o" \
+"CMakeFiles/mtag.dir/db.o" \
+"CMakeFiles/mtag.dir/meta.o"
 
 # External object files for target mtag
 mtag_EXTERNAL_OBJECTS =
 
 mtag: CMakeFiles/mtag.dir/main.o
+mtag: CMakeFiles/mtag.dir/tagger.o
+mtag: CMakeFiles/mtag.dir/crawler.o
+mtag: CMakeFiles/mtag.dir/db.o
+mtag: CMakeFiles/mtag.dir/meta.o
 mtag: CMakeFiles/mtag.dir/build.make
 	@echo "Linking CXX executable mtag"
 	$(CMAKE_COMMAND) -P CMakeFiles/mtag.dir/cmake_clean_target.cmake
@@ -95,6 +199,10 @@ mtag: CMakeFiles/mtag.dir/build.make
 CMakeFiles/mtag.dir/build: mtag
 
 CMakeFiles/mtag.dir/requires: CMakeFiles/mtag.dir/main.o.requires
+CMakeFiles/mtag.dir/requires: CMakeFiles/mtag.dir/tagger.o.requires
+CMakeFiles/mtag.dir/requires: CMakeFiles/mtag.dir/crawler.o.requires
+CMakeFiles/mtag.dir/requires: CMakeFiles/mtag.dir/db.o.requires
+CMakeFiles/mtag.dir/requires: CMakeFiles/mtag.dir/meta.o.requires
 
 CMakeFiles/mtag.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/mtag.dir/cmake_clean.cmake
