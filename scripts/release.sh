@@ -12,6 +12,8 @@ svn --force rm tags/mtag-${RELEASE}/*.mp3
 svn --force rm tags/mtag-${RELEASE}/*.ogg
 svn --force rm tags/mtag-${RELEASE}/*.sq3
 svn --force rm tags/mtag-${RELEASE}/CMakeCache.txt
+svn --forec rm tags/mtag-${RELEASE}/CMakeFiles/mtag.dir/CXX.includecache
+rm tags/mtag-${RELEASE}/CMakeFiles/mtag.dir/CXX.includecache
 sed -e 's/-Wall ?//' -e 's/CMAKE_VERBOSE_MAKEFILE ON/CMAKE_VERBOSE_MAKEFILE OFF/' -i tags/mtag-${RELEASE}/CMakeLists.txt
 
 #svn ci -m "release ${RELEASE}"

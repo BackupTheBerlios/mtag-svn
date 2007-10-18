@@ -2,13 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit eutils
+inherit eutils subversion
 
 DESCRIPTION="the fast media tag lib"
 HOMEPAGE="http://mtag.berlios.de/"
-SRC_URI="http://download.berlios.de/mtag/${P}.tar.gz
-	http://download2.berlios.de/mtag/${P}.tar.gz
-	http://svn.berlios.de/svnroot/repos/mtag/tars/${P}.tar.gz"
+SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -16,7 +14,15 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND="dev-util/cmake
-	media-libs/taglib"
+	media-libs/taglib
+	dev-util/subversion"
+
+src_unpack() {
+        local repo_uri="http://svn.berlios.de/svnroot/repos/mtag"
+        subversion_fetch ${repo_uri}/trunk/mtag
+		cmake ${S}
+}
+
 
 #src_compile() {
 #	cd ${S}
