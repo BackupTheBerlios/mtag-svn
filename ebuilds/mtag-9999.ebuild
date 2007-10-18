@@ -15,9 +15,10 @@ IUSE=""
 
 DEPEND="dev-util/cmake
 	media-libs/taglib
-	dev-util/subversion"
+	dev-util/subversion
+	>=dev-db/sqlite-3.3.12"
 
-src_unpack() {
+src() {
         local repo_uri="http://svn.berlios.de/svnroot/repos/mtag"
         subversion_fetch ${repo_uri}/trunk/mtag
 		cd ${S}

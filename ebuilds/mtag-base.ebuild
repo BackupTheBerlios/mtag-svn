@@ -16,7 +16,8 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND="dev-util/cmake
-	media-libs/taglib"
+	media-libs/taglib
+	>=dev-db/sqlite-3.3.12"
 
 src_unpack() {
 	unpack ${A}
