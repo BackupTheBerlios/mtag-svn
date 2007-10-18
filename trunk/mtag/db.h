@@ -13,3 +13,5 @@
 #include <stdlib.h>
 
 using namespace std;
+
+const char* sql_addTag(const char* filename, const char* tag);

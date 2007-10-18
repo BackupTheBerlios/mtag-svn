@@ -19,6 +19,6 @@
 
 using namespace std;
 
-int getTags(char* filename, TagLib::StringList *tags);
-int setTags(char* filename, TagLib::StringList tags);
-int clearTags(char* filename);
+int getTags(const char* filename, TagLib::StringList *tags);
+int setTags(const char* filename, TagLib::StringList tags);
+int clearTags(const char* filename);

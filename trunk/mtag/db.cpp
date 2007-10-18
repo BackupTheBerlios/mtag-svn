@@ -14,14 +14,17 @@
 #include <config.h>
 #endif
 
-
 #include <stdlib.h>
-
-/* For taglib */
-#include <fileref.h>
 #include <tag.h>
 
-/* For sqlite */
-#include <sqlite3.h>
-
 using namespace std;
+
+const char* sql_addTag(const char* filename, const char* tag)
+{
+	string sql("INSERT INTO tags ('filename', 'tag') VALUES ('");
+	sql.append(filename);
+	sql.append("', '");
+	sql.append(tag);
+	sql.append("');");
+	return sql.c_str();
+}

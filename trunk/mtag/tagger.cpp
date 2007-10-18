@@ -25,7 +25,7 @@
 
 using namespace std;
 
-int getTags(char* filename, TagLib::StringList *tags)
+int getTags(const char* filename, TagLib::StringList *tags)
 {
 	TagLib::FileRef f(filename);
 	if(!f.isNull() && f.tag())
@@ -50,7 +50,7 @@ int getTags(char* filename, TagLib::StringList *tags)
 	return EXIT_FAILURE;
 }
 
-int setTags(char* filename, TagLib::StringList tags)
+int setTags(const char* filename, TagLib::StringList tags)
 {
 	TagLib::FileRef f(filename);
 	if(!f.isNull() && f.tag())
@@ -75,7 +75,7 @@ int setTags(char* filename, TagLib::StringList tags)
 	return EXIT_FAILURE;
 }
 
-int clearTags(char* filename)
+int clearTags(const char* filename)
 {
 	setTags(filename, TagLib::StringList());
 }

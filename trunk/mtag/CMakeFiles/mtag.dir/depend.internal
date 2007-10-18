@@ -38,10 +38,14 @@ CMakeFiles/mtag.dir/tagger.o
  /usr/include/time.h
  /usr/include/xlocale.h
 CMakeFiles/mtag.dir/meta.o
+ /home/flx/dev/mtag/trunk/mtag/db.h
  /home/flx/dev/mtag/trunk/mtag/meta.cpp
  /home/flx/dev/mtag/trunk/mtag/tagger.h
  /usr/include/alloca.h
+ /usr/include/bits/dirent.h
  /usr/include/bits/endian.h
+ /usr/include/bits/local_lim.h
+ /usr/include/bits/posix1_lim.h
  /usr/include/bits/pthreadtypes.h
  /usr/include/bits/select.h
  /usr/include/bits/sigset.h
@@ -53,10 +57,12 @@ CMakeFiles/mtag.dir/meta.o
  /usr/include/bits/waitflags.h
  /usr/include/bits/waitstatus.h
  /usr/include/bits/wordsize.h
+ /usr/include/dirent.h
  /usr/include/endian.h
  /usr/include/features.h
  /usr/include/gnu/stubs-32.h
  /usr/include/gnu/stubs.h
+ /usr/include/linux/limits.h
  /usr/include/sqlite3.h
  /usr/include/stdlib.h
  /usr/include/sys/cdefs.h
@@ -94,22 +100,15 @@ CMakeFiles/mtag.dir/db.o
  /usr/include/features.h
  /usr/include/gnu/stubs-32.h
  /usr/include/gnu/stubs.h
- /usr/include/sqlite3.h
  /usr/include/stdlib.h
  /usr/include/sys/cdefs.h
  /usr/include/sys/select.h
  /usr/include/sys/sysmacros.h
  /usr/include/sys/types.h
- /usr/include/taglib/audioproperties.h
- /usr/include/taglib/fileref.h
  /usr/include/taglib/tag.h
  /usr/include/taglib/taglib.h
  /usr/include/taglib/tbytevector.h
- /usr/include/taglib/tbytevectorlist.h
- /usr/include/taglib/tlist.h
- /usr/include/taglib/tlist.tcc
  /usr/include/taglib/tstring.h
- /usr/include/taglib/tstringlist.h
  /usr/include/time.h
  /usr/include/xlocale.h
 CMakeFiles/mtag.dir/crawler.o

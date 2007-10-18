@@ -37,10 +37,14 @@ CMakeFiles/mtag.dir/tagger.o: /usr/include/taglib/tstringlist.h
 CMakeFiles/mtag.dir/tagger.o: /usr/include/time.h
 CMakeFiles/mtag.dir/tagger.o: /usr/include/xlocale.h
 
+CMakeFiles/mtag.dir/meta.o: db.h
 CMakeFiles/mtag.dir/meta.o: meta.cpp
 CMakeFiles/mtag.dir/meta.o: tagger.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/alloca.h
+CMakeFiles/mtag.dir/meta.o: /usr/include/bits/dirent.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/bits/endian.h
+CMakeFiles/mtag.dir/meta.o: /usr/include/bits/local_lim.h
+CMakeFiles/mtag.dir/meta.o: /usr/include/bits/posix1_lim.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/bits/pthreadtypes.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/bits/select.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/bits/sigset.h
@@ -52,10 +56,12 @@ CMakeFiles/mtag.dir/meta.o: /usr/include/bits/typesizes.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/bits/waitflags.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/bits/waitstatus.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/bits/wordsize.h
+CMakeFiles/mtag.dir/meta.o: /usr/include/dirent.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/endian.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/features.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/gnu/stubs-32.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/gnu/stubs.h
+CMakeFiles/mtag.dir/meta.o: /usr/include/linux/limits.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/sqlite3.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/stdlib.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/sys/cdefs.h
@@ -93,22 +99,15 @@ CMakeFiles/mtag.dir/db.o: /usr/include/endian.h
 CMakeFiles/mtag.dir/db.o: /usr/include/features.h
 CMakeFiles/mtag.dir/db.o: /usr/include/gnu/stubs-32.h
 CMakeFiles/mtag.dir/db.o: /usr/include/gnu/stubs.h
-CMakeFiles/mtag.dir/db.o: /usr/include/sqlite3.h
 CMakeFiles/mtag.dir/db.o: /usr/include/stdlib.h
 CMakeFiles/mtag.dir/db.o: /usr/include/sys/cdefs.h
 CMakeFiles/mtag.dir/db.o: /usr/include/sys/select.h
 CMakeFiles/mtag.dir/db.o: /usr/include/sys/sysmacros.h
 CMakeFiles/mtag.dir/db.o: /usr/include/sys/types.h
-CMakeFiles/mtag.dir/db.o: /usr/include/taglib/audioproperties.h
-CMakeFiles/mtag.dir/db.o: /usr/include/taglib/fileref.h
 CMakeFiles/mtag.dir/db.o: /usr/include/taglib/tag.h
 CMakeFiles/mtag.dir/db.o: /usr/include/taglib/taglib.h
 CMakeFiles/mtag.dir/db.o: /usr/include/taglib/tbytevector.h
-CMakeFiles/mtag.dir/db.o: /usr/include/taglib/tbytevectorlist.h
-CMakeFiles/mtag.dir/db.o: /usr/include/taglib/tlist.h
-CMakeFiles/mtag.dir/db.o: /usr/include/taglib/tlist.tcc
 CMakeFiles/mtag.dir/db.o: /usr/include/taglib/tstring.h
-CMakeFiles/mtag.dir/db.o: /usr/include/taglib/tstringlist.h
 CMakeFiles/mtag.dir/db.o: /usr/include/time.h
 CMakeFiles/mtag.dir/db.o: /usr/include/xlocale.h
 
