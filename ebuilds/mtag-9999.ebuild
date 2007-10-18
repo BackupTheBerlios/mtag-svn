@@ -23,13 +23,8 @@ src_unpack() {
 		cmake ${S}
 }
 
+src_install() {
+	[ ! -d "${D}/usr/bin/" ] && mkdir -p ${D}/usr/bin/
+	cp ${S}/mtag ${D}/usr/bin/ || die "install failed"
+}
 
-#src_compile() {
-#	cd ${S}
-#	econf --prefix=/usr/games || die "configure failed"
-#	emake || die "emake failed"
-#}
-
-#src_install() {
-#	make install DESTDIR=${D} || die "install failed"
-#}
