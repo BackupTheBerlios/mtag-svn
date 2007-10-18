@@ -29,7 +29,8 @@ find tars/mtag-${RELEASE}/ -name .svn -exec rm -rf {} \;
 cd tars
 tar -czf mtag-${RELEASE}.tar.gz mtag-${RELEASE}
 gpg -b mtag-${RELEASE}.tar.gz
-svn add mtag-${RELEASE}.tar.gz*
+#svn add mtag-${RELEASE}.tar.gz*
+scp mtag-${RELEASE}.tar.gz* shell.berlios.de:/home/groups/mtag/htdocs/dl/
 rm -rf mtag-${RELEASE}
 cd ..
 

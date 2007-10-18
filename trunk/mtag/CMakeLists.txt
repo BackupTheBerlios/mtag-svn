@@ -3,7 +3,6 @@ PROJECT(mtag)
 
 #if you don't want the full compiler output, remove the following line
 SET(CMAKE_VERBOSE_MAKEFILE ON)
-SET(CMAKE_SOURCE_DIR .)
 
 #add definitions, compiler switches, etc.
 ADD_DEFINITIONS(-Wall -O2)
