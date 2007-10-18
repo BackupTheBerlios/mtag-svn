@@ -37,10 +37,10 @@ RM = /usr/bin/cmake -E remove -f
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/flx/dev/mtag/trunk/mtag
+CMAKE_SOURCE_DIR = .
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/flx/dev/mtag/trunk/mtag
+CMAKE_BINARY_DIR = .
 
 # Include the progress variables for this target.
 include CMakeFiles/progress.make
