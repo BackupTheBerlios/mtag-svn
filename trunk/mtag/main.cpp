@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 				if (argc > 2)
 					needusage = false;
 				meta_search(optarg, &foundfiles);
-				cout << foundfiles << endl;
+				cout << foundfiles.toString("\n") << endl;
 				break;
 			case 'h':
 				usage(argv[0]);

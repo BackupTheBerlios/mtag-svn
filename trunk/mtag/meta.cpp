@@ -67,6 +67,16 @@ int meta_syncdir(char *dirname)
 	return EXIT_FAILURE;
 }
 
+int search_callback(void *filesp, int argc, char **argv, char **colnames)
+{
+	TagLib::StringList *files = (TagLib::StringList *) filesp;
+	for (int i = 0; i < argc; i++)
+	{
+		files->append(argv[i]);
+	}
+	return EXIT_SUCCESS;
+}
+
 int meta_search(char *tag, TagLib::StringList *files)
 {
 	sqlite3* db;
@@ -75,12 +85,10 @@ int meta_search(char *tag, TagLib::StringList *files)
 		cerr << "databaseerror" << endl;
 		return EXIT_FAILURE;
 	}
-	string sql("SELECT * FROM tags WHERE tag=");
+	string sql("SELECT filename FROM tags WHERE tag='");
 	sql += tag;
-	sql += ";";
-	sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
-
-	files->append("test.xxx");
+	sql += "';";
+	sqlite3_exec(db, sql.c_str(), search_callback, files, NULL);
 	sqlite3_close(db);
 	return EXIT_SUCCESS;
 }
