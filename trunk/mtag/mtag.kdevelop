@@ -1,14 +1,14 @@
 <?xml version = '1.0'?>
 <kdevelop>
   <general>
-  <projectmanagement>KDevCustomProject</projectmanagement>
-  <projectdirectory>/home/flx/dev/mtag/trunk/mtag</projectdirectory>
-  <absoluteprojectpath>true</absoluteprojectpath>
     <author/>
     <email/>
     <version>$VERSION$</version>
+    <projectmanagement>KDevCustomProject</projectmanagement>
     <primarylanguage>C++</primarylanguage>
     <ignoreparts/>
+    <projectdirectory>/home/flx/dev/mtag/trunk/mtag</projectdirectory>
+    <absoluteprojectpath>true</absoluteprojectpath>
     <secondaryLanguages>
       <language>C</language>
     </secondaryLanguages>
