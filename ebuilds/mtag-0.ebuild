@@ -6,9 +6,9 @@ inherit eutils
 
 DESCRIPTION="the fast media tag lib"
 HOMEPAGE="http://mtag.berlios.de/"
-SRC_URI="http://download.berlios.de/mtag/${P}.tar.gz
-	http://download2.berlios.de/mtag/${P}.tar.gz
-	http://mtag.berlios.de/dl/${P}.tar.gz"
+SRC_URI="http://mtag.berlios.de/dl/${P}.tar.gz
+	http://download.berlios.de/mtag/${P}.tar.gz
+	http://download2.berlios.de/mtag/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
