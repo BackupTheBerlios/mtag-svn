@@ -56,3 +56,17 @@ int meta_delTag(char* filename, TagLib::String tag)
 		tags.erase(it);
 	return meta_setTags(filename, tags);
 }
+
+
+int meta_syncdir(char *dirname)
+{
+	// TODO
+	return EXIT_FAILURE;
+}
+
+int meta_search(char *tag, TagLib::StringList *files)
+{
+	// TODO
+	files->append("test.xxx");
+	return EXIT_SUCCESS;
+}

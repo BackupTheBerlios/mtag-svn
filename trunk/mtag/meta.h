@@ -25,3 +25,6 @@ int meta_clearTags(char* filename);
 
 int meta_addTag(char* filename, TagLib::String tag);
 int meta_delTag(char* filename, TagLib::String tag);
+
+int meta_syncdir(char *dirname);
+int meta_search(char *tag, TagLib::StringList *files);

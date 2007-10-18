@@ -26,7 +26,15 @@ using namespace std;
 
 void usage(char* arg0)
 {
-	cout << "usage: " << arg0 << "[-a tag] [-d tag] [-c] [-s] files" << endl;
+	cout << "usage: " << arg0 << " [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
+	cout << "	-a tag	add tag" <<endl;
+	cout << "	-d tag	delete tag" <<endl;
+	cout << "	-c	clear tags" <<endl;
+	cout << "	-s	show tag (default)" <<endl;
+	cout << "	-y dir	sync dir" <<endl;
+	cout << "	-x tag	search for tag" <<endl;
+	cout << "	-h	show this message" <<endl;
+	
 }
 
 int main(int argc, char *argv[])
@@ -36,7 +44,8 @@ int main(int argc, char *argv[])
 	bool needusage = true;
 	bool show = true;
 	bool needshow = false;
-	while ((optchar = getopt(argc, argv, "+a:d:chs:")) > 0) {
+	TagLib::StringList foundfiles;
+	while ((optchar = getopt(argc, argv, "+a:d:chs:y:x:")) > 0) {
 		switch(optchar)
 		{
         		case 'a':
@@ -68,9 +77,20 @@ int main(int argc, char *argv[])
 					needusage = false;
 				needshow=true;
 				break;
+			case 'y':
+				needusage = false;
+				meta_syncdir(optarg);
+				break;
+			case 'x':
+				if (argc > 2)
+					needusage = false;
+				meta_search(optarg, &foundfiles);
+				cout << foundfiles << endl;
+				break;
 			case 'h':
 				usage(argv[0]);
 				return EXIT_SUCCESS;
+				break;
 		}
 	}
 	if (show || needshow)
@@ -87,7 +107,9 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (needusage || opterr)
+	{
 		usage(argv[0]);
-		EXIT_FAILURE;
+		return EXIT_FAILURE;
+	}
 	return EXIT_SUCCESS;
 }

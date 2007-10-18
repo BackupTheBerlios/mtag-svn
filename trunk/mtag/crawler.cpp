@@ -22,3 +22,8 @@
 #include <tag.h>
 
 using namespace std;
+
+int sync_dir(char *dirname)
+{
+	return EXIT_FAILURE;
+}

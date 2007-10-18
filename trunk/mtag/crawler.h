@@ -13,3 +13,5 @@
 #include <stdlib.h>
 
 using namespace std;
+
+int sync_dir(char *dirname);
