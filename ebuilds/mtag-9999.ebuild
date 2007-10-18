@@ -20,6 +20,7 @@ DEPEND="dev-util/cmake
 src_unpack() {
         local repo_uri="http://svn.berlios.de/svnroot/repos/mtag"
         subversion_fetch ${repo_uri}/trunk/mtag
+		cd ${S}
 		cmake ${S}
 }
 

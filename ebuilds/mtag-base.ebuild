@@ -6,7 +6,7 @@ inherit eutils
 
 DESCRIPTION="the fast media tag lib"
 HOMEPAGE="http://mtag.berlios.de/"
-SRC_URI="http://mtag.berlios.de/dl/${P}.tar.gz
+SRC_URI="http://svn.berlios.de/svnroot/repos/mtag/tars/${P}.tar.gz
 	http://download.berlios.de/mtag/${P}.tar.gz
 	http://download2.berlios.de/mtag/${P}.tar.gz"
 
@@ -20,6 +20,7 @@ DEPEND="dev-util/cmake
 
 src_unpack() {
 	unpack ${A}
+	cd ${S}
 	cmake ${S}
 }
 
