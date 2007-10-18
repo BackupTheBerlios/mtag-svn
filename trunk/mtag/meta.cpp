@@ -18,6 +18,9 @@
 #include <tag.h>
 #include <tstringlist.h>
 
+/* For sqlite3 */
+#include <sqlite3.h>
+
 using namespace std;
 
 int meta_getTags(char* filename, TagLib::StringList *tags)
@@ -66,7 +69,18 @@ int meta_syncdir(char *dirname)
 
 int meta_search(char *tag, TagLib::StringList *files)
 {
-	// TODO
+	sqlite3* db;
+	if(sqlite3_open("mtag.db", &db) != SQLITE_OK)
+	{
+		cerr << "databaseerror" << endl;
+		return EXIT_FAILURE;
+	}
+	string sql("SELECT * FROM tags WHERE tag=");
+	sql += tag;
+	sql += ";";
+	sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
+
 	files->append("test.xxx");
+	sqlite3_close(db);
 	return EXIT_SUCCESS;
 }

@@ -19,8 +19,6 @@
 
 /* local includes */
 #include "meta.h"
-#include "crawler.h"
-#include "db.h"
 
 using namespace std;
 

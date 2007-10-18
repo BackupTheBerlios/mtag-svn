@@ -56,6 +56,7 @@ CMakeFiles/mtag.dir/meta.o: /usr/include/endian.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/features.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/gnu/stubs-32.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/gnu/stubs.h
+CMakeFiles/mtag.dir/meta.o: /usr/include/sqlite3.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/stdlib.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/sys/cdefs.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/sys/select.h
@@ -74,8 +75,6 @@ CMakeFiles/mtag.dir/meta.o: /usr/include/taglib/tstringlist.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/time.h
 CMakeFiles/mtag.dir/meta.o: /usr/include/xlocale.h
 
-CMakeFiles/mtag.dir/main.o: crawler.h
-CMakeFiles/mtag.dir/main.o: db.h
 CMakeFiles/mtag.dir/main.o: main.cpp
 CMakeFiles/mtag.dir/main.o: meta.h
 CMakeFiles/mtag.dir/main.o: /usr/include/_G_config.h

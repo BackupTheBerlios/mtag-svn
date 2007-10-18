@@ -57,6 +57,7 @@ CMakeFiles/mtag.dir/meta.o
  /usr/include/features.h
  /usr/include/gnu/stubs-32.h
  /usr/include/gnu/stubs.h
+ /usr/include/sqlite3.h
  /usr/include/stdlib.h
  /usr/include/sys/cdefs.h
  /usr/include/sys/select.h
@@ -75,8 +76,6 @@ CMakeFiles/mtag.dir/meta.o
  /usr/include/time.h
  /usr/include/xlocale.h
 CMakeFiles/mtag.dir/main.o
- /home/flx/dev/mtag/trunk/mtag/crawler.h
- /home/flx/dev/mtag/trunk/mtag/db.h
  /home/flx/dev/mtag/trunk/mtag/main.cpp
  /home/flx/dev/mtag/trunk/mtag/meta.h
  /usr/include/_G_config.h
