@@ -17,9 +17,11 @@
 #include <tag.h>
 #include <tstringlist.h>
 
+#include "tagger.h"
+
 using namespace std;
 
-int getTags(const char* filename, TagLib::StringList *tags)
+int tagger::getTags(const char* filename, TagLib::StringList *tags)
 {
 	TagLib::FileRef f(filename);
 	if(!f.isNull() && f.tag())
@@ -44,7 +46,7 @@ int getTags(const char* filename, TagLib::StringList *tags)
 	return EXIT_FAILURE;
 }
 
-int setTags(const char* filename, TagLib::StringList tags)
+int tagger::setTags(const char* filename, TagLib::StringList tags)
 {
 	TagLib::FileRef f(filename);
 	if(!f.isNull() && f.tag())
@@ -69,7 +71,7 @@ int setTags(const char* filename, TagLib::StringList tags)
 	return EXIT_FAILURE;
 }
 
-int clearTags(const char* filename)
+int tagger::clearTags(const char* filename)
 {
 	setTags(filename, TagLib::StringList());
 }

@@ -19,6 +19,30 @@
 
 using namespace std;
 
-int getTags(const char* filename, TagLib::StringList *tags);
-int setTags(const char* filename, TagLib::StringList tags);
-int clearTags(const char* filename);
+/**
+* handles tagging of files via taglib.
+**/
+class tagger
+{
+	public:
+	
+		/**
+		 * get tags of file.
+		 * @param [in] filename target file
+		 * @param [out] tags list of tags
+		 */
+		static int getTags(const char* filename, TagLib::StringList *tags);
+		
+		/**
+		 * set tags for file.
+		 * @param [in] filename target file
+		 * @param [in] tags list of tags
+		 */
+		static int setTags(const char* filename, TagLib::StringList tags);
+		
+		/**
+		 * clear tags for file.
+		 * @param [in] filename target file
+		 */
+		static int clearTags(const char* filename);
+};

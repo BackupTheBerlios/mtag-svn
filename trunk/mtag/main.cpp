@@ -32,6 +32,9 @@ void usage(char* arg0)
 	
 }
 
+/**
+ * main!
+ */
 int main(int argc, char *argv[])
 {
 	opterr = 0;
@@ -48,7 +51,7 @@ int main(int argc, char *argv[])
 				show = false;
 				for(int i = 1; i < argc; i++)
 				{
-					meta_addTag(argv[i], optarg);
+					meta::addTag(argv[i], optarg);
 				}
 				break;
 			case 'c':
@@ -56,7 +59,7 @@ int main(int argc, char *argv[])
 				show = false;
 				for(int i = 1; i < argc; i++)
 				{
-					meta_clearTags(argv[i]);
+					meta::clearTags(argv[i]);
 				}
 				break;
 			case 'd':
@@ -64,7 +67,7 @@ int main(int argc, char *argv[])
 				show = false;
 				for(int i = 1; i < argc; i++)
 				{
-					meta_delTag(argv[i], optarg);
+					meta::delTag(argv[i], optarg);
 				}
 				break;
 			case 's':
@@ -74,12 +77,12 @@ int main(int argc, char *argv[])
 				break;
 			case 'y':
 				needusage = false;
-				meta_syncdir(optarg);
+				meta::syncdir(optarg);
 				break;
 			case 'x':
 				if (argc > 2)
 					needusage = false;
-				meta_search(optarg, &foundfiles);
+				meta::search(optarg, &foundfiles);
 				cout << foundfiles.toString("\n") << endl;
 				break;
 			case 'h':
@@ -93,7 +96,7 @@ int main(int argc, char *argv[])
 		for(int i = 1; i < argc; i++)
 		{
 			TagLib::StringList tags;
-			if (meta_getTags(argv[i], &tags) == EXIT_SUCCESS)
+			if (meta::getTags(argv[i], &tags) == EXIT_SUCCESS)
 			{
 				cout << argv[i] << ": " << tags.toString(", ") << endl;
 			}

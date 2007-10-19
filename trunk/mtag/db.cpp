@@ -20,58 +20,9 @@
 /* For taglib */
 #include <fileref.h>
 
+#include "db.h"
+
 using namespace std;
-
-int sql_openDB(sqlite3 **db)
-{
-	if(sqlite3_open("mtag.db", db) != SQLITE_OK)
-		return EXIT_FAILURE;
-	return EXIT_SUCCESS;
-}
-
-int sql_closeDB(sqlite3* db)
-{
-	return sqlite3_close(db);
-}
-
-int sql_addTag(const char* filename, const char* tag, sqlite3* db)
-{
-	string sql("INSERT INTO tags(filename, tag) VALUES('");
-	sql.append(filename);
-	sql.append("', '");
-	sql.append(tag);
-	sql.append("');");
-	return sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
-}
-
-int sql_addTag(const char* filename, const char* tag)
-{
-	sqlite3* db;
-	if(sql_openDB(&db) != EXIT_SUCCESS)
-		return EXIT_FAILURE;
-	int res = sql_addTag(filename, tag, db);
-	sql_closeDB(db);
-	return res;
-
-}
-
-int sql_clearTags(const char* filename, sqlite3* db)
-{
-	string sql("DELETE FROM tags WHERE filename='");
-	sql.append(filename);
-	sql.append("';");
-	return sqlite3_exec(db, sql.c_str(), NULL, NULL, NULL);
-}
-
-int sql_clearTags(const char* filename)
-{
-	sqlite3* db;
-	if(sql_openDB(&db) != EXIT_SUCCESS)
-		return EXIT_FAILURE;
-	int res = sql_clearTags(filename, db);
-	sql_closeDB(db);
-	return res;
-}
 
 int search_callback(void *filesp, int argc, char **argv, char **colnames)
 {
@@ -83,19 +34,72 @@ int search_callback(void *filesp, int argc, char **argv, char **colnames)
 	return EXIT_SUCCESS;
 }
 
-int sql_search(const char* tag, TagLib::StringList *files, sqlite3* db){
-	string sql("SELECT DISTINCT filename FROM tags WHERE tag='");
-	sql += tag;
-	sql += "';";
-	sqlite3_exec(db, sql.c_str(), search_callback, files, NULL);
+
+int sql::openDB(sqlite3 **db)
+{
+	if(sqlite3_open("mtag.db", db) != SQLITE_OK)
+		return EXIT_FAILURE;
+	return EXIT_SUCCESS;
 }
 
-int sql_search(const char* tag, TagLib::StringList *files)
+int sql::closeDB(sqlite3* db)
+{
+	return sqlite3_close(db);
+}
+
+int sql::addTag(const char* filename, const char* tag, sqlite3* db)
+{
+	string s("INSERT INTO tags(filename, tag) VALUES('");
+	s.append(filename);
+	s.append("', '");
+	s.append(tag);
+	s.append("');");
+	return sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
+}
+
+int sql::addTag(const char* filename, const char* tag)
 {
 	sqlite3* db;
-	if(sql_openDB(&db) != EXIT_SUCCESS)
+	if(openDB(&db) != EXIT_SUCCESS)
 		return EXIT_FAILURE;
-	int res = sql_search(tag, files, db);
-	sql_closeDB(db);
+	int res = addTag(filename, tag, db);
+	closeDB(db);
+	return res;
+}
+
+int sql::clearTags(const char* filename, sqlite3* db)
+{
+	string s("DELETE FROM tags WHERE filename='");
+	s.append(filename);
+	s.append("';");
+	return sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
+}
+
+int sql::clearTags(const char* filename)
+{
+	sqlite3* db;
+	if(openDB(&db) != EXIT_SUCCESS)
+		return EXIT_FAILURE;
+	int res = clearTags(filename, db);
+	closeDB(db);
+	return res;
+}
+
+
+int sql::search(const char* tag, TagLib::StringList *files, sqlite3* db)
+{
+	string s("SELECT DISTINCT filename FROM tags WHERE tag='");
+	s += tag;
+	s += "';";
+	return sqlite3_exec(db, s.c_str(), search_callback, files, NULL);
+}
+
+int sql::search(const char* tag, TagLib::StringList *files)
+{
+	sqlite3* db;
+	if(openDB(&db) != EXIT_SUCCESS)
+		return EXIT_FAILURE;
+	int res = search(tag, files, db);
+	closeDB(db);
 	return res;
 }

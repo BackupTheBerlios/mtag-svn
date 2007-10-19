@@ -26,71 +26,73 @@
 #include <sys/types.h>
 #include <dirent.h>
 
+#include "meta.h"
+
 using namespace std;
 
-int meta_getTags(char* filename, TagLib::StringList *tags)
+int meta::getTags(char* filename, TagLib::StringList *tags)
 {
-	return getTags(filename, tags);
+	return tagger::getTags(filename, tags);
 }
 
-int meta_setTags(char* filename, TagLib::StringList tags)
+int meta::setTags(char* filename, TagLib::StringList tags)
 {
 	sqlite3 *db;
-	if (sql::sql_openDB(&db) != EXIT_SUCCESS)
-		return setTags(filename, tags);
-	sql_clearTags(filename, db);
+	if (sql::openDB(&db) != EXIT_SUCCESS)
+		return tagger::setTags(filename, tags);
+	sql::clearTags(filename, db);
 	for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
-		sql_addTag(filename, (*it).toCString(), db);
-	sql_closeDB(db);
-	return setTags(filename, tags);
+		sql::addTag(filename, (*it).toCString(), db);
+	sql::closeDB(db);
+	return tagger::setTags(filename, tags);
 }
 
-int meta_clearTags(char* filename)
+int meta::clearTags(char* filename)
 {
-	if (meta_getTags(filename, NULL) == EXIT_SUCCESS)
+	if (getTags(filename, NULL) == EXIT_SUCCESS)
 	{
-		sql_clearTags(filename);
-		return clearTags(filename);
+		sql::clearTags(filename);
+		return tagger::clearTags(filename);
 	}
 	return EXIT_FAILURE;
 }
 
-int meta_addTag(char* filename, TagLib::String tag)
+int meta::addTag(char* filename, TagLib::String tag)
 {
 	TagLib::StringList tags;
-	if (meta_getTags(filename, &tags) != EXIT_SUCCESS)
+	if (getTags(filename, &tags) != EXIT_SUCCESS)
 		return EXIT_FAILURE;
 	if (tags.find(tag) == tags.end())
 		tags.append(tag);
-	return meta_setTags(filename, tags);
+	return setTags(filename, tags);
 }
 
-int meta_delTag(char* filename, TagLib::String tag)
+int meta::delTag(char* filename, TagLib::String tag)
 {
 	TagLib::StringList tags;
-	if (meta_getTags(filename, &tags) != EXIT_SUCCESS)
+	if (getTags(filename, &tags) != EXIT_SUCCESS)
 		return EXIT_FAILURE;
 	TagLib::StringList::Iterator it = tags.find(tag);
 	if (it != tags.end())
 		tags.erase(it);
-	return meta_setTags(filename, tags);
+	return setTags(filename, tags);
 }
 
-int meta_syncdir(const char *dirname, sqlite3* db)
+int meta::syncdir(const char *dirname, sqlite3* db)
 {
 	DIR *dir;
 	struct dirent *entry;
 	if (!(dir = opendir(dirname))) {
 		TagLib::StringList tags;
-		if (getTags(dirname, &tags) == EXIT_SUCCESS)
+		if (tagger::getTags(dirname, &tags) == EXIT_SUCCESS)
 		{
 			if (!tags.isEmpty())
 			{
 				cout << dirname << ": " << tags << endl;
-				sql_clearTags(dirname, db);
+				sql::clearTags(dirname, db);
 				for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
 				{
-					sql_addTag(dirname, (*it).toCString(), db);
+					sql::addTag(dirname, (*it).toCString(), db);
 				}
 			}
 			return EXIT_SUCCESS;
@@ -99,11 +101,11 @@ int meta_syncdir(const char *dirname, sqlite3* db)
 	}
 
 	string sdirname(dirname);
-	while (entry=readdir(dir)) {
+	while ((entry=readdir(dir))) {
 		string s(entry->d_name);
 		if (s != string(".") && s != string(".."))
 		{
-			meta_syncdir((sdirname + "/" + entry->d_name).c_str(), db);
+			syncdir((sdirname + "/" + entry->d_name).c_str(), db);
 		}
 	}
 	closedir(dir);
@@ -111,22 +113,22 @@ int meta_syncdir(const char *dirname, sqlite3* db)
 }
 
 
-int meta_syncdir(const char *dirname)
+int meta::syncdir(const char *dirname)
 {
 	sqlite3* db;
-	if(sql_openDB(&db) != EXIT_SUCCESS)
+	if(sql::openDB(&db) != EXIT_SUCCESS)
 	{
 		cerr << "databaseerror" << endl;
 		return EXIT_FAILURE;
 	}
-	int res = meta_syncdir(dirname, db);
-	sql_closeDB(db);
+	int res = syncdir(dirname, db);
+	sql::closeDB(db);
 	return res;
 }
 
 
 
-int meta_search(char *tag, TagLib::StringList *files)
+int meta::search(const char *tag, TagLib::StringList *files)
 {
-	return sql_search(tag, files);
+	return sql::search(tag, files);
 }
