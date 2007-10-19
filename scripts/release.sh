@@ -8,6 +8,8 @@ echo making release: ${RELEASE}
 svn up
 
 (cd trunk/mtag ; make clean)
+(cd trunk/mtag ; doxygen)
+
 svn cp trunk/mtag tags/mtag-${RELEASE}
 svn --force rm tags/mtag-${RELEASE}/*~
 svn --force rm tags/mtag-${RELEASE}/*.mp3
@@ -19,17 +21,18 @@ svn --force rm tags/mtag-${RELEASE}/CMakeFiles
 svn --force rm tags/mtag-${RELEASE}/Makefile
 svn --force rm tags/mtag-${RELEASE}/cmake_install.cmake
 svn --force rm tags/mtag-${RELEASE}/xml
-svn --force rm tags/mtag-${RELEASE}/html
 svn --force rm tags/mtag-${RELEASE}/latex
 svn --force rm tags/mtag-${RELEASE}/*.tag
 
 sed -e 's/-Wall//' -e 's/CMAKE_VERBOSE_MAKEFILE ON/CMAKE_VERBOSE_MAKEFILE OFF/' -i tags/mtag-${RELEASE}/CMakeLists.txt
+sed -e "s/\$VERSION\$/mtag-${RELEASE}/" -i tags/mtag-${RELEASE}/Doxyfile
 
 svn export tags/mtag-${RELEASE} tars/mtag-${RELEASE}
 
 rm -rf tars/mtag-${RELEASE}/.??*
 rm -rf tars/mtag-${RELEASE}/*.kdevelop*
 rm -rf tars/mtag-${RELEASE}/templates
+rm -rf tars/mtag-${RELEASE}/html
 #find tars/mtag-${RELEASE}/ -name .svn -exec rm -rf {} \;
 
 cd tars
