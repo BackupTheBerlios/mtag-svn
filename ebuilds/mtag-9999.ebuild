@@ -30,9 +30,9 @@ src_compile() {
 }
 
 src_install() {
-	mkdir -p ${D}/usr/bin/ ${D}/usr/share/doc/${P}/
-	cp ${S}/mtag ${D}/usr/bin/
-	cp ${S}/README ${S}/COPYING ${D}/usr/share/doc/${P}/
+	mkdir -p ${D}/usr/share/doc/${P}/
+	dobin ${S}/mtag
+	dodoc ${S}/README ${S}/COPYING
 	if use doc; then
 		cp -r ${S}/html ${D}/usr/share/doc/${P}/
 	fi

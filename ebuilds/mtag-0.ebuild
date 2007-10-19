@@ -25,6 +25,6 @@ src_unpack() {
 }
 
 src_install() {
-	[ ! -d "${D}/usr/bin/" ] && mkdir -p ${D}/usr/bin/
-	cp ${S}/mtag ${D}/usr/bin/ || die "install failed"
+	mkdir -p ${D}/usr/bin/
+	dobin ${S}/mtag
 }
