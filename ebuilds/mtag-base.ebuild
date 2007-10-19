@@ -18,7 +18,7 @@ IUSE="doc"
 DEPEND="dev-util/cmake
 	media-libs/taglib
 	>=dev-db/sqlite-3.3.12
-	doc? app-doc/doxygen"
+	doc? ( app-doc/doxygen )"
 
 src_compile() {
 	cd ${S}
