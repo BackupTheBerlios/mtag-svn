@@ -20,9 +20,9 @@ DEPEND="dev-util/cmake
 	>=dev-db/sqlite-3.3.12"
 
 src_compile() {
-    cd ${S}
-    cmake ${S} || die "compile failed!"
-    emake || die "compile failed!"
+	cd ${S}
+	cmake ${S} || die "compile failed!"
+	emake || die "compile failed!"
 }
 
 src_install() {
