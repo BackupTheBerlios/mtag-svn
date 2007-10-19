@@ -20,12 +20,14 @@ svn --force rm tags/mtag-${RELEASE}/CMakeCache.txt
 svn --force rm tags/mtag-${RELEASE}/CMakeFiles
 svn --force rm tags/mtag-${RELEASE}/Makefile
 svn --force rm tags/mtag-${RELEASE}/cmake_install.cmake
-svn --force rm tags/mtag-${RELEASE}/xml
-svn --force rm tags/mtag-${RELEASE}/latex
-svn --force rm tags/mtag-${RELEASE}/*.tag
 
 sed -e 's/-Wall//' -e 's/CMAKE_VERBOSE_MAKEFILE ON/CMAKE_VERBOSE_MAKEFILE OFF/' -i tags/mtag-${RELEASE}/CMakeLists.txt
 sed -e "s/\$VERSION\$/mtag-${RELEASE}/" -i tags/mtag-${RELEASE}/Doxyfile
+(cd tags/mtag-${RELEASE} ; doxygen)
+
+svn --force rm tags/mtag-${RELEASE}/xml
+svn --force rm tags/mtag-${RELEASE}/latex
+svn --force rm tags/mtag-${RELEASE}/*.tag
 
 svn export tags/mtag-${RELEASE} tars/mtag-${RELEASE}
 
