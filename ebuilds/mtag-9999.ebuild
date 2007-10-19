@@ -22,10 +22,10 @@ DEPEND="dev-util/cmake
 
 src_compile() {
 	cd ${S}
-	cmake ${S}
-	make
+	cmake ${S} || die "compile failed!"
+	emake  || die "compile failed!"
 	if use doc; then
-		doxygen ${S}
+		doxygen ${S} || die "compile failed!"
 	fi
 }
 

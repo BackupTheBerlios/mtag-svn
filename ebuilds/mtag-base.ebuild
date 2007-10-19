@@ -22,14 +22,13 @@ DEPEND="dev-util/cmake
 src_compile() {
     cd ${S}
     cmake ${S} || die "compile failed!"
-    make || die "compile failed!"
+    emake || die "compile failed!"
 }
 
 src_install() {
-    mkdir -p ${D}/usr/bin/ ${D}/usr/share/doc/${P}/
-    dobin ${S}/mtag
-    dodoc ${S}/README ${S}/COPYING
-    if use doc; then
-        cp -r ${S}/html ${D}/usr/share/doc/${P}/
-    fi
+	dobin ${S}/mtag
+	dodoc ${S}/README ${S}/COPYING
+	if use doc; then
+		dohtml ${S}/html/*
+	fi
 }
