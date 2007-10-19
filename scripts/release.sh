@@ -22,7 +22,7 @@ svn --force rm tags/mtag-${RELEASE}/Makefile
 svn --force rm tags/mtag-${RELEASE}/cmake_install.cmake
 
 sed -e 's/-Wall//' -e 's/CMAKE_VERBOSE_MAKEFILE ON/CMAKE_VERBOSE_MAKEFILE OFF/' -i tags/mtag-${RELEASE}/CMakeLists.txt
-sed -e "s/\$VERSION\$/mtag-${RELEASE}/" -i tags/mtag-${RELEASE}/Doxyfile
+sed -e "s/PROJECT_NUMBER.*/PROJECT_NUMBER = v${RELEASE}/" -i tags/mtag-${RELEASE}/Doxyfile
 (cd tags/mtag-${RELEASE} ; doxygen)
 
 svn --force rm tags/mtag-${RELEASE}/xml
@@ -34,7 +34,6 @@ svn export tags/mtag-${RELEASE} tars/mtag-${RELEASE}
 rm -rf tars/mtag-${RELEASE}/.??*
 rm -rf tars/mtag-${RELEASE}/*.kdevelop*
 rm -rf tars/mtag-${RELEASE}/templates
-rm -rf tars/mtag-${RELEASE}/html
 #find tars/mtag-${RELEASE}/ -name .svn -exec rm -rf {} \;
 
 cd tars
