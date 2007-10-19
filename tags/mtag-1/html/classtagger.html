@@ -18,7 +18,7 @@
     <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
   </ul>
 </div>
-<h1>tagger Class Reference</h1><!-- doxytag: class="tagger" --><code>#include &lt;<a class="el" href="tagger_8h-source.html">tagger.h</a>&gt;</code>
+<h1>tagger Class Reference</h1><!-- doxytag: class="tagger" --><code>#include &lt;<a class="el" href="mtag_2tagger_8h-source.html">tagger.h</a>&gt;</code>
 <p>
 <a href="classtagger-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
@@ -28,6 +28,12 @@
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtagger.html#12cc354b1f74d3ddf08d64d9f1232d0a">setTags</a> (const char *filename, TagLib::StringList tags)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtagger.html#b118d4c6857d9034aee4a5c62f91f0d9">clearTags</a> (const char *filename)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtagger.html#be25586f797e18d2bf5cf2ea48636e83">getTags</a> (const char *filename, TagLib::StringList *tags)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtagger.html#92a30a71b3e9b226d9583dd0484ee654">setTags</a> (const char *filename, TagLib::StringList tags)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtagger.html#313cd03366b5bf1ea9603822b01e8840">clearTags</a> (const char *filename)</td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -129,9 +135,104 @@ clear tags for file. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 </div>
 </div><p>
+<a class="anchor" name="be25586f797e18d2bf5cf2ea48636e83"></a><!-- doxytag: member="tagger::getTags" ref="be25586f797e18d2bf5cf2ea48636e83" args="(const char *filename, TagLib::StringList *tags)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int tagger::getTags           </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TagLib::StringList *&nbsp;</td>
+          <td class="paramname"> <em>tags</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+get tags of file. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>filename</em>&nbsp;</td><td>target file </td></tr>
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>tags</em>&nbsp;</td><td>list of tags </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="92a30a71b3e9b226d9583dd0484ee654"></a><!-- doxytag: member="tagger::setTags" ref="92a30a71b3e9b226d9583dd0484ee654" args="(const char *filename, TagLib::StringList tags)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int tagger::setTags           </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TagLib::StringList&nbsp;</td>
+          <td class="paramname"> <em>tags</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+set tags for file. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>filename</em>&nbsp;</td><td>target file </td></tr>
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>tags</em>&nbsp;</td><td>list of tags </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="313cd03366b5bf1ea9603822b01e8840"></a><!-- doxytag: member="tagger::clearTags" ref="313cd03366b5bf1ea9603822b01e8840" args="(const char *filename)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int tagger::clearTags           </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>filename</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+clear tags for file. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>filename</em>&nbsp;</td><td>target file </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="tagger_8h-source.html">tagger.h</a><li>tagger.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 19 12:52:40 2007 for mtag by&nbsp;
+<li><a class="el" href="mtag_2tagger_8h-source.html">mtag/tagger.h</a><li><a class="el" href="tagger_8h-source.html">tagger.h</a><li>mtag/tagger.cpp<li>tagger.cpp</ul>
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 19 13:57:40 2007 for mtag by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>
