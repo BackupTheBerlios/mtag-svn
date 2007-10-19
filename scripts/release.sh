@@ -15,16 +15,18 @@ svn --force rm tags/mtag-${RELEASE}/*.ogg
 svn --force rm tags/mtag-${RELEASE}/*.sq3
 svn --force rm tags/mtag-${RELEASE}/*.db
 svn --force rm tags/mtag-${RELEASE}/CMakeCache.txt
-svn --forec rm tags/mtag-${RELEASE}/CMakeFiles/mtag.dir/CXX.includecache
+svn --forec rm tags/mtag-${RELEASE}/CMakeFiles
+svn --forec rm tags/mtag-${RELEASE}/Makefile
+svn --forec rm tags/mtag-${RELEASE}/cmake_install.cmake
+
 sed -e 's/-Wall ?//' -e 's/CMAKE_VERBOSE_MAKEFILE ON/CMAKE_VERBOSE_MAKEFILE OFF/' -i tags/mtag-${RELEASE}/CMakeLists.txt
 
-#svn ci -m "release ${RELEASE}"
-cp -r tags/mtag-${RELEASE} tars/mtag-${RELEASE}
+svn export tags/mtag-${RELEASE} tars/mtag-${RELEASE}
 
 rm -rf tars/mtag-${RELEASE}/.??*
 rm -rf tars/mtag-${RELEASE}/*.kdevelop*
 rm -rf tars/mtag-${RELEASE}/templates
-find tars/mtag-${RELEASE}/ -name .svn -exec rm -rf {} \;
+#find tars/mtag-${RELEASE}/ -name .svn -exec rm -rf {} \;
 
 cd tars
 tar -czf mtag-${RELEASE}.tar.gz mtag-${RELEASE}
