@@ -34,6 +34,6 @@ src_install() {
 	dobin ${S}/mtag
 	dodoc ${S}/README ${S}/COPYING
 	if use doc; then
-		cp -r ${S}/html ${D}/usr/share/doc/${P}/
+		dohtml ${S}/html/*
 	fi
 }
