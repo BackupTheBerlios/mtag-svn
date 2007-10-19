@@ -73,5 +73,5 @@ int tagger::setTags(const char* filename, TagLib::StringList tags)
 
 int tagger::clearTags(const char* filename)
 {
-	setTags(filename, TagLib::StringList());
+	return setTags(filename, TagLib::StringList());
 }
