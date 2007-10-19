@@ -1,12 +1,15 @@
-# KDevelop Custom Project File List
-CMakeLists.txt
-main.cpp
-Makefile
-tagger.cpp
-tagger.h
 crawler.h
-crawler.cpp
 db.h
+meta.h
+tagger.h
+CMakeLists.txt
+Makefile
+crawler.cpp
+crawler.h
 db.cpp
+db.h
+main.cpp
 meta.cpp
 meta.h
+tagger.cpp
+tagger.h
