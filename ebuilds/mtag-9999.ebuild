@@ -7,6 +7,7 @@ inherit eutils subversion
 DESCRIPTION="the fast media tag lib"
 HOMEPAGE="http://mtag.berlios.de/"
 SRC_URI=""
+ESVN_REPO_URI="http://svn.berlios.de/svnroot/repos/mtag/trunk/mtag"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -19,27 +20,20 @@ DEPEND="dev-util/cmake
 	>=dev-db/sqlite-3.3.12
 	doc? app-doc/doxygen"
 
-src() {
-        local repo_uri="http://svn.berlios.de/svnroot/repos/mtag"
-        subversion_fetch ${repo_uri}/trunk/mtag
-		cd ${S}
-		cmake ${S}
-}
-
-src_unpack() {
+src_compile() {
 	cd ${S}
 	cmake ${S}
+	make
 	if use doc; then
 		doxygen ${S}
 	fi
 }
 
 src_install() {
-	[ ! -d "${D}/usr/bin/" ] && mkdir -p ${D}/usr/bin/
-	cp ${S}/mtag ${D}/usr/bin/ || die "install failed"
+	mkdir -p ${D}/usr/bin/ ${D}/usr/share/doc/${P}/
+	cp ${S}/mtag ${D}/usr/bin/
 	cp ${S}/README ${S}/COPYING ${D}/usr/share/doc/${P}/
 	if use doc; then
 		cp -r ${S}/html ${D}/usr/share/doc/${P}/
 	fi
 }
-

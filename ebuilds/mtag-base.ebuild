@@ -20,10 +20,10 @@ DEPEND="dev-util/cmake
 	>=dev-db/sqlite-3.3.12
 	doc? app-doc/doxygen"
 
-src_unpack() {
-	unpack ${A}
+src_compile() {
 	cd ${S}
 	cmake ${S}
+	make
 	if use doc; then
 		doxygen ${S}
 	fi
@@ -31,10 +31,9 @@ src_unpack() {
 
 src_install() {
 	mkdir -p ${D}/usr/bin/ ${D}/usr/share/doc/${P}/
-	cp ${S}/mtag ${D}/usr/bin/ || die "install failed"
+	cp ${S}/mtag ${D}/usr/bin/
 	cp ${S}/README ${S}/COPYING ${D}/usr/share/doc/${P}/
 	if use doc; then
 		cp -r ${S}/html ${D}/usr/share/doc/${P}/
 	fi
-	
 }
