@@ -11,8 +11,10 @@
 //
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "tagger.h"
 #include "db.h"
+#include "utils.h"
 
 /* For taglib */
 #include <fileref.h>
@@ -40,9 +42,11 @@ int meta::setTags(char* filename, TagLib::StringList tags)
 	sqlite3 *db;
 	if (sql::openDB(&db) != EXIT_SUCCESS)
 		return tagger::setTags(filename, tags);
-	sql::clearTags(filename, db);
+	string ap = utils::absPath(filename);
+	sql::clearTags(ap.c_str(), db);
+	cout << ap << endl;
 	for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
-		sql::addTag(filename, (*it).toCString(), db);
+		sql::addTag(ap.c_str(), (*it).toCString(), db);
 	sql::closeDB(db);
 	return tagger::setTags(filename, tags);
 }
@@ -51,7 +55,8 @@ int meta::clearTags(char* filename)
 {
 	if (getTags(filename, NULL) == EXIT_SUCCESS)
 	{
-		sql::clearTags(filename);
+		string ap = utils::absPath(filename);
+		sql::clearTags(ap.c_str());
 		return tagger::clearTags(filename);
 	}
 	return EXIT_FAILURE;
@@ -89,10 +94,11 @@ int meta::syncdir(const char *dirname, sqlite3* db)
 			if (!tags.isEmpty())
 			{
 				cout << dirname << ": " << tags << endl;
-				sql::clearTags(dirname, db);
+				string ap = utils::absPath(dirname);
+				sql::clearTags(ap.c_str(), db);
 				for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
 				{
-					sql::addTag(dirname, (*it).toCString(), db);
+					sql::addTag(ap.c_str(), (*it).toCString(), db);
 				}
 			}
 			return EXIT_SUCCESS;
@@ -121,7 +127,8 @@ int meta::syncdir(const char *dirname)
 		cerr << "databaseerror" << endl;
 		return EXIT_FAILURE;
 	}
-	int res = syncdir(dirname, db);
+	string ap = utils::absPath(dirname);
+	int res = syncdir(ap.c_str(), db);
 	sql::closeDB(db);
 	return res;
 }

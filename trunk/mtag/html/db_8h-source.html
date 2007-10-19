@@ -33,22 +33,26 @@
 <a name="l00019"></a>00019 
 <a name="l00023"></a><a class="code" href="classsql.html">00023</a> <span class="keyword">class </span><a class="code" href="classsql.html">sql</a>
 <a name="l00024"></a>00024 {
-<a name="l00025"></a>00025         <span class="keyword">public</span>:
-<a name="l00026"></a>00026 
-<a name="l00031"></a>00031         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#e6ac9fc0dabb8ba2b82ed73fdd4fe306">openDB</a>(sqlite3 **db);
-<a name="l00032"></a>00032         
-<a name="l00037"></a>00037         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#3282c683bb34ec04cc5f3f3aab4cc844">closeDB</a>(sqlite3 *db);
-<a name="l00038"></a>00038 
-<a name="l00044"></a>00044         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#2abfb393b7b38e1a7b9b461fd2130653">addTag</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename, <span class="keyword">const</span> <span class="keywordtype">char</span>* tag);
-<a name="l00048"></a>00048         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#2abfb393b7b38e1a7b9b461fd2130653">addTag</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename, <span class="keyword">const</span> <span class="keywordtype">char</span>* tag, sqlite3* db);
-<a name="l00049"></a>00049         
-<a name="l00054"></a>00054         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#3b67b8bafe87d765f822d3e961432c71">clearTags</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename);
-<a name="l00058"></a>00058         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#3b67b8bafe87d765f822d3e961432c71">clearTags</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename, sqlite3* db);
-<a name="l00059"></a>00059 
-<a name="l00065"></a>00065         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#96dbc6d1a0f2023b2749080775858759">search</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, TagLib::StringList *files);
-<a name="l00069"></a>00069         <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#96dbc6d1a0f2023b2749080775858759">search</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, TagLib::StringList *files, sqlite3* db);
-<a name="l00070"></a>00070 };
-</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 19 10:30:05 2007 for mtag by&nbsp;
+<a name="l00025"></a>00025         <span class="keyword">private</span>:
+<a name="l00026"></a>00026                 <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *database;
+<a name="l00027"></a>00027         <span class="keyword">public</span>:
+<a name="l00028"></a>00028                 
+<a name="l00033"></a>00033                 <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classsql.html#8b29877a945c3c00172828905c700a11">setDataBase</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *filename);
+<a name="l00034"></a>00034                 
+<a name="l00039"></a>00039                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#e6ac9fc0dabb8ba2b82ed73fdd4fe306">openDB</a>(sqlite3 **db);
+<a name="l00040"></a>00040                 
+<a name="l00045"></a>00045                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#3282c683bb34ec04cc5f3f3aab4cc844">closeDB</a>(sqlite3 *db);
+<a name="l00046"></a>00046         
+<a name="l00052"></a>00052                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#2abfb393b7b38e1a7b9b461fd2130653">addTag</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename, <span class="keyword">const</span> <span class="keywordtype">char</span>* tag);
+<a name="l00056"></a>00056                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#2abfb393b7b38e1a7b9b461fd2130653">addTag</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename, <span class="keyword">const</span> <span class="keywordtype">char</span>* tag, sqlite3* db);
+<a name="l00057"></a>00057                 
+<a name="l00062"></a>00062                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#3b67b8bafe87d765f822d3e961432c71">clearTags</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename);
+<a name="l00066"></a>00066                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#3b67b8bafe87d765f822d3e961432c71">clearTags</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* filename, sqlite3* db);
+<a name="l00067"></a>00067         
+<a name="l00073"></a>00073                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#96dbc6d1a0f2023b2749080775858759">search</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, TagLib::StringList *files);
+<a name="l00077"></a>00077                 <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classsql.html#96dbc6d1a0f2023b2749080775858759">search</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, TagLib::StringList *files, sqlite3* db);
+<a name="l00078"></a>00078 };
+</pre></div><hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 19 12:45:26 2007 for mtag by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

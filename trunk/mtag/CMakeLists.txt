@@ -8,7 +8,7 @@ SET(CMAKE_VERBOSE_MAKEFILE ON)
 ADD_DEFINITIONS(-Wall -O2)
 
 #list all source files here
-ADD_EXECUTABLE(mtag main.cpp tagger.cpp db.cpp meta.cpp)
+ADD_EXECUTABLE(mtag main.cpp tagger.cpp db.cpp meta.cpp utils.cpp)
 
 TARGET_LINK_LIBRARIES(mtag tag sqlite3)
 

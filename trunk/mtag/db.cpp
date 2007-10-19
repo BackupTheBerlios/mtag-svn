@@ -37,8 +37,13 @@ int search_callback(void *filesp, int argc, char **argv, char **colnames)
 
 int sql::openDB(sqlite3 **db)
 {
-	if(sqlite3_open("mtag.db", db) != SQLITE_OK)
+	if(sqlite3_open(database, db) != SQLITE_OK)
+	{
 		return EXIT_FAILURE;
+	}
+	sqlite3_exec(*db, "CREATE TABLE tags (filename TEXT, tag TEXT);", NULL, NULL, NULL);
+	sqlite3_exec(*db, "CREATE INDEX tagsByFile ON tags(filename ASC);", NULL, NULL, NULL);
+	sqlite3_exec(*db, "CREATE INDEX tagsByTags ON tags(tag ASC);", NULL, NULL, NULL);
 	return EXIT_SUCCESS;
 }
 
@@ -102,4 +107,11 @@ int sql::search(const char* tag, TagLib::StringList *files)
 	int res = search(tag, files, db);
 	closeDB(db);
 	return res;
+}
+
+const char *sql::database;
+
+void sql::setDataBase(const char *filename)
+{
+	database = filename;
 }

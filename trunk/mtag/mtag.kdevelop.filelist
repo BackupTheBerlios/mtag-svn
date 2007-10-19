@@ -8,3 +8,5 @@ db.cpp
 main.cpp
 meta.cpp
 tagger.cpp
+utils.h
+utils.cpp

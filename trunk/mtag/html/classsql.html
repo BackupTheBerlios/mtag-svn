@@ -23,6 +23,8 @@
 <a href="classsql-members.html">List of all members.</a><table border="0" cellpadding="0" cellspacing="0">
 <tr><td></td></tr>
 <tr><td colspan="2"><br><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#8b29877a945c3c00172828905c700a11">setDataBase</a> (const char *filename)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#e6ac9fc0dabb8ba2b82ed73fdd4fe306">openDB</a> (sqlite3 **db)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#3282c683bb34ec04cc5f3f3aab4cc844">closeDB</a> (sqlite3 *db)</td></tr>
@@ -44,6 +46,31 @@
 handles <a class="el" href="classsql.html">sql</a> things. 
 <p>
 <hr><h2>Member Function Documentation</h2>
+<a class="anchor" name="8b29877a945c3c00172828905c700a11"></a><!-- doxytag: member="sql::setDataBase" ref="8b29877a945c3c00172828905c700a11" args="(const char *filename)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sql::setDataBase           </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>filename</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+set database file <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>filename</em>&nbsp;</td><td>path to databse file </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
 <a class="anchor" name="e6ac9fc0dabb8ba2b82ed73fdd4fe306"></a><!-- doxytag: member="sql::openDB" ref="e6ac9fc0dabb8ba2b82ed73fdd4fe306" args="(sqlite3 **db)" -->
 <div class="memitem">
 <div class="memproto">
@@ -293,7 +320,7 @@ search for files with certain tag. <dl compact><dt><b>Parameters:</b></dt><dd>
 </div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="db_8h-source.html">db.h</a><li>db.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 19 10:30:05 2007 for mtag by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Fri Oct 19 12:45:26 2007 for mtag by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>
