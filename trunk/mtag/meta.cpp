@@ -35,13 +35,23 @@ int meta_getTags(char* filename, TagLib::StringList *tags)
 
 int meta_setTags(char* filename, TagLib::StringList tags)
 {
+	sqlite3 *db;
+	if (sql::sql_openDB(&db) != EXIT_SUCCESS)
+		return setTags(filename, tags);
+	sql_clearTags(filename, db);
+	for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
+		sql_addTag(filename, (*it).toCString(), db);
+	sql_closeDB(db);
 	return setTags(filename, tags);
 }
 
 int meta_clearTags(char* filename)
 {
 	if (meta_getTags(filename, NULL) == EXIT_SUCCESS)
+	{
+		sql_clearTags(filename);
 		return clearTags(filename);
+	}
 	return EXIT_FAILURE;
 }
 
@@ -77,13 +87,10 @@ int meta_syncdir(const char *dirname, sqlite3* db)
 			if (!tags.isEmpty())
 			{
 				cout << dirname << ": " << tags << endl;
+				sql_clearTags(dirname, db);
 				for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
 				{
-					const char *sql =  sql_addTag(dirname, (*it).toCString());
-					cout << sql << endl;
-					char **errormsg;
-					sqlite3_exec(db, sql, NULL, NULL, errormsg);
-					cout << *errormsg << endl;
+					sql_addTag(dirname, (*it).toCString(), db);
 				}
 			}
 			return EXIT_SUCCESS;
@@ -107,40 +114,19 @@ int meta_syncdir(const char *dirname, sqlite3* db)
 int meta_syncdir(const char *dirname)
 {
 	sqlite3* db;
-	if(sqlite3_open("mtag.db", &db) != SQLITE_OK)
+	if(sql_openDB(&db) != EXIT_SUCCESS)
 	{
 		cerr << "databaseerror" << endl;
 		return EXIT_FAILURE;
 	}
-	
 	int res = meta_syncdir(dirname, db);
-
-	sqlite3_close(db);
+	sql_closeDB(db);
 	return res;
 }
 
-int search_callback(void *filesp, int argc, char **argv, char **colnames)
-{
-	TagLib::StringList *files = (TagLib::StringList *) filesp;
-	for (int i = 0; i < argc; i++)
-	{
-		files->append(argv[i]);
-	}
-	return EXIT_SUCCESS;
-}
+
 
 int meta_search(char *tag, TagLib::StringList *files)
 {
-	sqlite3* db;
-	if(sqlite3_open("mtag.db", &db) != SQLITE_OK)
-	{
-		cerr << "databaseerror" << endl;
-		return EXIT_FAILURE;
-	}
-	string sql("SELECT filename FROM tags WHERE tag='");
-	sql += tag;
-	sql += "';";
-	sqlite3_exec(db, sql.c_str(), search_callback, files, NULL);
-	sqlite3_close(db);
-	return EXIT_SUCCESS;
+	return sql_search(tag, files);
 }

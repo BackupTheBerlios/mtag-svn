@@ -3,9 +3,6 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -98,8 +95,7 @@ int main(int argc, char *argv[])
 			TagLib::StringList tags;
 			if (meta_getTags(argv[i], &tags) == EXIT_SUCCESS)
 			{
-				cout << "track: " << argv[i] << endl;
-				cout << "tags: " << tags.toString(", ") << endl;
+				cout << argv[i] << ": " << tags.toString(", ") << endl;
 			}
 		needusage = false;
 		}
