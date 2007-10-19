@@ -20,16 +20,16 @@ DEPEND="dev-util/cmake
 	>=dev-db/sqlite-3.3.12"
 
 src_compile() {
-	cd ${S}
-	cmake ${S}
-	make
+    cd ${S}
+    cmake ${S} || die "compile failed!"
+    make || die "compile failed!"
 }
 
 src_install() {
-	mkdir -p ${D}/usr/bin/ ${D}/usr/share/doc/${P}/
-	cp ${S}/mtag ${D}/usr/bin/
-	cp ${S}/README ${S}/COPYING ${D}/usr/share/doc/${P}/
-	if use doc; then
-		cp -r ${S}/html ${D}/usr/share/doc/${P}/
-	fi
+    mkdir -p ${D}/usr/bin/ ${D}/usr/share/doc/${P}/ || die "compile failed!"
+    cp ${S}/mtag ${D}/usr/bin/ && \
+        cp ${S}/README ${S}/COPYING ${D}/usr/share/doc/${P}/ || die "compile failed!"
+    if use doc; then
+        cp -r ${S}/html ${D}/usr/share/doc/${P}/ || die "compile failed!"
+    fi
 }
