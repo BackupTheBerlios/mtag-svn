@@ -38,7 +38,7 @@ rm -rf tars/mtag-${RELEASE}/templates
 
 cd tars
 tar -czf mtag-${RELEASE}.tar.gz mtag-${RELEASE}
-gpg -b mtag-${RELEASE}.tar.gz
+gpg -ab mtag-${RELEASE}.tar.gz
 svn add mtag-${RELEASE}.tar.gz*
 #scp mtag-${RELEASE}.tar.gz* shell.berlios.de:/home/groups/mtag/htdocs/dl/
 rm -rf mtag-${RELEASE}
@@ -47,4 +47,4 @@ cd ..
 
 svn cp ebuilds/mtag-base.ebuild ebuilds/mtag-${RELEASE}.ebuild
 
-svn ci -m "release ${RELEASE}"
+#svn ci -m "release ${RELEASE}"
