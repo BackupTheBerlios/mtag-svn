@@ -30,7 +30,6 @@ src_compile() {
 }
 
 src_install() {
-	mkdir -p ${D}/usr/share/doc/${P}/
 	dobin ${S}/mtag
 	dodoc ${S}/README ${S}/COPYING
 	if use doc; then
