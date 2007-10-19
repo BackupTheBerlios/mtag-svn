@@ -1,0 +1,4 @@
+INSTALL:
+	run "cmake ." in this dir.
+	run "make"
+	copy mtag to /usr/bin/

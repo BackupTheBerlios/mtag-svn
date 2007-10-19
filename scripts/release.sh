@@ -47,4 +47,4 @@ cd ..
 
 svn cp ebuilds/mtag-base.ebuild ebuilds/mtag-${RELEASE}.ebuild
 
-#svn ci -m "release ${RELEASE}"
+svn ci -m "release ${RELEASE}"
