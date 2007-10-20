@@ -18,6 +18,8 @@ IUSE=""
 DEPEND="dev-util/cmake
 	media-libs/taglib"
 
+RDEPEND="media-libs/taglib"
+
 src_unpack() {
 	unpack ${A}
 	cd ${S}

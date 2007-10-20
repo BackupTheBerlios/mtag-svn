@@ -20,6 +20,9 @@ DEPEND="dev-util/cmake
 	>=dev-db/sqlite-3.3.12
 	doc? ( app-doc/doxygen )"
 
+RDEPEND="media-libs/taglib
+	>=dev-db/sqlite-3.3.12"
+
 src_compile() {
 	cd ${S}
 	cmake ${S} || die "compile failed!"
