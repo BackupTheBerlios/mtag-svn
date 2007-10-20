@@ -20,7 +20,7 @@ DEPEND="dev-util/cmake
 	>=dev-db/sqlite-3.3.12"
 
 RDEPEND="media-libs/taglib
-    >=dev-db/sqlite-3.3.12"
+	>=dev-db/sqlite-3.3.12"
 
 src_compile() {
 	cd ${S}
