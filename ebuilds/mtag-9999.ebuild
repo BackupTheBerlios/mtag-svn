@@ -16,7 +16,7 @@ IUSE="doc"
 
 DEPEND="dev-util/cmake
 	dev-util/subversion
-	doc? ( app-doc/doxygen sys-apps/sed )
+	doc? ( app-doc/doxygen )
 	${RDEPEND}"
 
 RDEPEND="media-libs/taglib
@@ -26,8 +26,6 @@ src_compile() {
 	cmake ${S} || die "compile failed!"
 	emake  || die "compile failed!"
 	if use doc; then
-		sed -e "s/PROJECT_NUMBER.*/PROJECT_NUMBER = svnbuild: $(date)/" \
-			-i ${S}/Doxyfile
 		doxygen ${S} || die "compile failed!"
 	fi
 }
