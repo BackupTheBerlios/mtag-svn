@@ -15,27 +15,27 @@ KEYWORDS="~x86 ~amd64"
 IUSE="doc"
 
 DEPEND="dev-util/cmake
-	media-libs/taglib
 	dev-util/subversion
-	>=dev-db/sqlite-3.3.12
-	doc? ( app-doc/doxygen )"
+	doc? ( app-doc/doxygen sys-apps/sed )
+	${RDEPEND}"
 
 RDEPEND="media-libs/taglib
 	>=dev-db/sqlite-3.3.12"
 
 src_compile() {
-	cd ${S}
 	cmake ${S} || die "compile failed!"
 	emake  || die "compile failed!"
 	if use doc; then
+		sed -e "s/PROJECT_NUMBER.*/PROJECT_NUMBER = svnbuild: $(date)/" \
+			-i ${S}/Doxyfile
 		doxygen ${S} || die "compile failed!"
 	fi
 }
 
 src_install() {
-	dobin ${S}/mtag
-	dodoc ${S}/README ${S}/COPYING
+	dobin mtag
+	dodoc README COPYING ChangeLog
 	if use doc; then
-		dohtml ${S}/html/*
+		dohtml html/*
 	fi
 }

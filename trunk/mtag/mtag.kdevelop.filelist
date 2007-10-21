@@ -1,12 +1,12 @@
 # KDevelop Custom Project File List
-db.h
-meta.h
-tagger.h
 CMakeLists.txt
 Makefile
 db.cpp
+db.h
 main.cpp
 meta.cpp
+meta.h
 tagger.cpp
-utils.h
+tagger.h
 utils.cpp
+utils.h

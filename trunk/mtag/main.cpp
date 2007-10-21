@@ -38,8 +38,15 @@ void usage(char* arg0)
 
 int main(int argc, char *argv[])
 {
-	string p(getenv("HOME"));
-	p += "/.mtag.db";
+	string p;
+	if (getenv("MTAG_DB"))
+	{
+		p = getenv("MTAG_DB");
+	} else {
+		p = getenv("HOME");
+		p += "/.mtag.db";
+	}
+	cout << p <<endl;
 	sql::setDataBase(p.c_str());
 	opterr = 0;
 	int optchar;

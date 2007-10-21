@@ -1,0 +1,2 @@
+2007/10/21	init changlog
+		get database from env(MTAG_DB) if set
