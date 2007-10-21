@@ -16,22 +16,20 @@ KEYWORDS="~x86 ~amd64"
 IUSE="doc"
 
 DEPEND="dev-util/cmake
-	media-libs/taglib
-	>=dev-db/sqlite-3.3.12"
+	${RDEPEND}"
 
 RDEPEND="media-libs/taglib
     >=dev-db/sqlite-3.3.12"
 
 src_compile() {
-	cd ${S}
 	cmake ${S} || die "compile failed!"
 	emake || die "compile failed!"
 }
 
 src_install() {
-	dobin ${S}/mtag
-	dodoc ${S}/README ${S}/COPYING
+	dobin mtag
+	dodoc README COPYING ChangeLog
 	if use doc; then
-		dohtml ${S}/html/*
+		dohtml html/*
 	fi
 }
