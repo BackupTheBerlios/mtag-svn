@@ -20,10 +20,25 @@ using namespace std;
  */
 class utils
 {
+	private:
+		static string strippath;
 	public:
 		/**
 		 * build an absolut path from path)
 		 * @param [in] path path
 		 */
 		static string absPath(const char* path);
+		
+		/**
+		 * sets path to strip from output.
+		 * @param [in] path path
+		 */
+		static void setStripPath(const char* path);
+		
+		/**
+		 * strips leading path from given path
+		 * @param [in] path path
+		 * @see setStripPath
+		 */
+		static string stripPath(const char* path);
 };

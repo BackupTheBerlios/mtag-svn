@@ -24,16 +24,20 @@ using namespace std;
 
 void usage(char* arg0)
 {
-	cout << "usage: " << arg0 << "[-b db] [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
+	cout << "mTag: the fast media tag lib" << endl;
+	cout << endl;
+	cout << "usage: " << arg0 << " [-z path] [-b db] [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
+	cout << "	-b db	database file (default: $MTAG_DB)" <<endl;
+	cout << "	-z path	strip leading path (default: $MTAG_STRIPPATH)" <<endl;
 	cout << "	-a tag	add tag" <<endl;
 	cout << "	-d tag	delete tag" <<endl;
 	cout << "	-c	clear tags" <<endl;
 	cout << "	-s	show tag (default)" <<endl;
 	cout << "	-y dir	sync dir" <<endl;
 	cout << "	-x tag	search for tag" <<endl;
-	cout << "	-b db	database file" <<endl;
 	cout << "	-h	show this message" <<endl;
-	
+	cout << endl;
+	cout << "	-b and -z should be set first" << endl;
 }
 
 int main(int argc, char *argv[])
@@ -47,13 +51,15 @@ int main(int argc, char *argv[])
 		p += "/.mtag.db";
 	}
 	sql::setDataBase(p.c_str());
+	if (getenv("MTAG_STRIPPATH"))
+		utils::setStripPath(getenv("MTAG_STRIPPATH"));
 	opterr = 0;
 	int optchar;
 	bool needusage = true;
 	bool show = true;
 	bool needshow = false;
 	TagLib::StringList foundfiles;
-	while ((optchar = getopt(argc, argv, "+b:a:d:chs:y:x:")) > 0) {
+	while ((optchar = getopt(argc, argv, "+b:a:d:chs:y:x:z:")) > 0) {
 		switch(optchar)
 		{
 			case 'b':
@@ -96,7 +102,11 @@ int main(int argc, char *argv[])
 				if (argc > 2)
 					needusage = false;
 				meta::search(optarg, &foundfiles);
-				cout << foundfiles.toString("\n") << endl;
+				for (TagLib::StringList::Iterator it = foundfiles.begin(); it != foundfiles.end(); it++)
+					cout << utils::stripPath((*it).toCString()) << endl;
+				break;
+			case 'z':
+				utils::setStripPath(optarg);
 				break;
 			case 'h':
 				usage(argv[0]);
@@ -111,7 +121,7 @@ int main(int argc, char *argv[])
 			TagLib::StringList tags;
 			if (meta::getTags(argv[i], &tags) == EXIT_SUCCESS)
 			{
-				cout << argv[i] << ": " << tags.toString(", ") << endl;
+				cout << utils::stripPath(argv[i]) << ": " << tags.toString(", ") << endl;
 			}
 		needusage = false;
 		}

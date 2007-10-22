@@ -31,6 +31,10 @@ string utils::absPath(const char* path){
 		p = cwd + p;
 	}
 	uint i;
+	while ((i = p.find("//")) != string::npos)
+	{
+		p.erase(i, 1);
+	}
 	while ((i = p.find("/./")) != string::npos)
 	{
 		p.erase(i, 2);
@@ -45,6 +49,9 @@ string utils::absPath(const char* path){
 			p.erase(j, 3 + i - j);
 		}
 	}
+	if ((i = p.rfind("/")) == p.length() - 1){
+		p.erase(i, 1);
+	}
 	if ((i = p.find("/.")) == p.length() - 2)
 		p.erase(i, 2);
 	if ((i = p.find("/..")) == p.length() - 3)
@@ -56,5 +63,22 @@ string utils::absPath(const char* path){
 			p.erase(j, 3 + i - j);
 		}
 	}
+	return p;
+}
+
+string utils::strippath;
+
+void utils::setStripPath(const char* path)
+{
+	strippath = absPath(path);
+}
+
+string utils::stripPath(const char* path)
+{
+	string p(path);
+	if (! strippath.length())
+		return p;
+	if (p.find(strippath) == 0)
+		p.erase(0, strippath.length() + 1);
 	return p;
 }
