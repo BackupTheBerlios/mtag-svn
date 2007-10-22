@@ -30,5 +30,31 @@ string utils::absPath(const char* path){
 		p = "/" + p;
 		p = cwd + p;
 	}
+	uint i;
+	while ((i = p.find("/./")) != string::npos)
+	{
+		p.erase(i, 2);
+	}
+	while ((i = p.find("/../")) != string::npos)
+	{
+		if (i == 0)
+		{
+			p.erase(i, 3);
+		} else {
+			uint j = p.rfind("/", i - 1);
+			p.erase(j, 3 + i - j);
+		}
+	}
+	if ((i = p.find("/.")) == p.length() - 2)
+		p.erase(i, 2);
+	if ((i = p.find("/..")) == p.length() - 3)
+	{
+		if (i == 0)
+			p = "/";
+		else {
+			uint j = p.rfind("/", i - 1);
+			p.erase(j, 3 + i - j);
+		}
+	}
 	return p;
 }

@@ -55,7 +55,10 @@
       <filetype>Makefile</filetype>
       <filetype>CMakeLists.txt</filetype>
     </filetypes>
-    <blacklist/>
+    <blacklist>
+      <path>latex</path>
+      <path>latex/Makefile</path>
+    </blacklist>
   </kdevcustomproject>
   <kdevfilecreate>
     <filetypes/>

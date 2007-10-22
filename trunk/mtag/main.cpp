@@ -46,7 +46,6 @@ int main(int argc, char *argv[])
 		p = getenv("HOME");
 		p += "/.mtag.db";
 	}
-	cout << p <<endl;
 	sql::setDataBase(p.c_str());
 	opterr = 0;
 	int optchar;
