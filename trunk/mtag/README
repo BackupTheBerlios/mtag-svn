@@ -2,3 +2,14 @@ INSTALL:
 	run "cmake ." in this dir.
 	run "make"
 	copy mtag to /usr/bin/
+
+USAGE:
+	set MTAG_DB: the mtag sqlite3 file
+	set TAG_STRIPPATH: leading path that is stript from output paths
+	run "mtag -y /path/to/music" to sync old tags with database
+	run "mtag -a myfavsong /path/to/music/file.ogg" to add the tag myfavsong to /path/to/music/file.ogg
+	run "mtag -x myfavsong" to get all your favorite songs
+	run "mtag -d myfavsong  /path/to/music/file.mp3" if you don't like this song anymore
+	run "mtag -c /path/to/music/file.flac" to clear all tags from /path/to/music/file.flac
+
+	run "mtag -x party | xargs mpc add" to add oll your partysongs to mpd's running playlist
