@@ -95,7 +95,7 @@ int sql::search(const char* tag, TagLib::StringList *files, sqlite3* db)
 {
 	string s("SELECT DISTINCT filename FROM tags WHERE tag='");
 	s += tag;
-	s += "';";
+	s += "' ORDER BY filename ASC;";
 	return sqlite3_exec(db, s.c_str(), search_callback, files, NULL);
 }
 
@@ -114,4 +114,22 @@ const char *sql::database;
 void sql::setDataBase(const char *filename)
 {
 	database = filename;
+}
+
+int sql::wipePath(const char* path, sqlite3* db)
+{
+	string s("DELETE FROM tags WHERE filename like '");
+	s += path;
+	s += "%';";
+	return sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
+}
+
+int sql::wipePath(const char* path)
+{
+	sqlite3* db;
+	if(openDB(&db) != EXIT_SUCCESS)
+		return EXIT_FAILURE;
+	int res = wipePath(path, db);
+	closeDB(db);
+	return res;
 }

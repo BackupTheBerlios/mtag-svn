@@ -1,4 +1,5 @@
-2007/10/22	support stripping leading path, feature reqest: #3798
+2007/10/22	wipe all old database entrys befor syncing with infile tags
+		support stripping leading path, feature reqest: #3798
 		fix paths, bug: #12231
 2007/10/21	init changlog
 		get database from env(MTAG_DB) if set

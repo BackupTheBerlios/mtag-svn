@@ -41,6 +41,10 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#f7656596a2c606c58890910f21ca8997">search</a> (const char *tag, TagLib::StringList *files, sqlite3 *db)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#7ec81bc9db9071c525eb1b054ceef5ed">wipePath</a> (const char *path)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#89fbc3d40bb7f17c4ca774597f2467f7">wipePath</a> (const char *path, sqlite3 *db)</td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 handles <a class="el" href="classsql.html">sql</a> things. 
@@ -318,9 +322,64 @@ search for files with certain tag. <dl compact><dt><b>Parameters:</b></dt><dd>
 
 </div>
 </div><p>
+<a class="anchor" name="7ec81bc9db9071c525eb1b054ceef5ed"></a><!-- doxytag: member="sql::wipePath" ref="7ec81bc9db9071c525eb1b054ceef5ed" args="(const char *path)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sql::wipePath           </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>path</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+wipe all tags from files with filname like path% <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>path</em>&nbsp;</td><td>path to wipe </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="89fbc3d40bb7f17c4ca774597f2467f7"></a><!-- doxytag: member="sql::wipePath" ref="89fbc3d40bb7f17c4ca774597f2467f7" args="(const char *path, sqlite3 *db)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sql::wipePath           </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sqlite3 *&nbsp;</td>
+          <td class="paramname"> <em>db</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classsql.html#7ec81bc9db9071c525eb1b054ceef5ed">wipePath</a> </dd></dl>
+
+</div>
+</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="db_8h-source.html">db.h</a><li>db.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Oct 22 09:12:12 2007 for mtag by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Mon Oct 22 09:53:26 2007 for mtag by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

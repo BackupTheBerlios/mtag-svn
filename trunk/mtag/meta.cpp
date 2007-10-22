@@ -93,7 +93,7 @@ int meta::syncdir(const char *dirname, sqlite3* db)
 		{
 			if (!tags.isEmpty())
 			{
-				cout << dirname << ": " << tags << endl;
+				cout << utils::stripPath(dirname) << ": " << tags << endl;
 				string ap = utils::absPath(dirname);
 				sql::clearTags(ap.c_str(), db);
 				for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
@@ -128,6 +128,7 @@ int meta::syncdir(const char *dirname)
 		return EXIT_FAILURE;
 	}
 	string ap = utils::absPath(dirname);
+	sql::wipePath(ap.c_str(), db);
 	int res = syncdir(ap.c_str(), db);
 	sql::closeDB(db);
 	return res;

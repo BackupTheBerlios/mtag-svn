@@ -75,4 +75,15 @@ class sql
 		* @see search
 		*/
 		static int search(const char* tag, TagLib::StringList *files, sqlite3* db);
+		
+		/**
+		 * wipe all tags from files with filname like path%
+		 * @param [in] path path to wipe
+		 */
+		static int wipePath(const char* path);
+		
+		/**
+		 * @see wipePath
+		 */
+		static int wipePath(const char* path, sqlite3* db);
 };
