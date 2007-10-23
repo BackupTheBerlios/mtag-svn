@@ -80,4 +80,11 @@ class meta
 		 * @see sql::search
 		 */
 		static int search(const char *tag, TagLib::StringList *files);
+		
+		/**
+		 * list all tags.
+		 * @param [out] tags list of tags
+		 * @see sql::list
+		 */
+		static int list(TagLib::StringList *tags);
 };

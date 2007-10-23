@@ -26,9 +26,10 @@ void usage(char* arg0)
 {
 	cout << "mTag: the fast media tag lib" << endl;
 	cout << endl;
-	cout << "usage: " << arg0 << " [-z path] [-b db] [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
+	cout << "usage: " << arg0 << " [-z path] [-b db] [-l] [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
 	cout << "	-b db	database file (default: $MTAG_DB)" <<endl;
 	cout << "	-z path	strip leading path (default: $MTAG_STRIPPATH)" <<endl;
+	cout << "	-l	list all tags" <<endl;
 	cout << "	-a tag	add tag" <<endl;
 	cout << "	-d tag	delete tag" <<endl;
 	cout << "	-c	clear tags" <<endl;
@@ -59,7 +60,8 @@ int main(int argc, char *argv[])
 	bool show = true;
 	bool needshow = false;
 	TagLib::StringList foundfiles;
-	while ((optchar = getopt(argc, argv, "+b:a:d:chs:y:x:z:")) > 0) {
+	TagLib::StringList tags;
+	while ((optchar = getopt(argc, argv, "+a:b:cd:hls:y:x:z:")) > 0) {
 		switch(optchar)
 		{
 			case 'b':
@@ -107,6 +109,11 @@ int main(int argc, char *argv[])
 				break;
 			case 'z':
 				utils::setStripPath(optarg);
+				break;
+			case 'l':
+				needusage = false;
+				meta::list(&tags);
+				cout << tags.toString("\n") << endl;
 				break;
 			case 'h':
 				usage(argv[0]);

@@ -1,3 +1,4 @@
+2007/10/23	implement "mtag -l" to list all tags
 2007/10/22	edit README
 		wipe all old database entrys befor syncing with infile tags
 		support stripping leading path, feature reqest: #3798

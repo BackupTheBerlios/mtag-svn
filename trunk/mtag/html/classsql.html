@@ -45,6 +45,10 @@
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#89fbc3d40bb7f17c4ca774597f2467f7">wipePath</a> (const char *path, sqlite3 *db)</td></tr>
 
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#4203b8e6b8eb281b926262c00c67bfef">list</a> (TagLib::StringList *tags)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsql.html#bd4b6511475b31ec4777e71cd6d9f8d7">list</a> (TagLib::StringList *tags, sqlite3 *db)</td></tr>
+
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 handles <a class="el" href="classsql.html">sql</a> things. 
@@ -377,9 +381,64 @@ wipe all tags from files with filname like path% <dl compact><dt><b>Parameters:<
 
 </div>
 </div><p>
+<a class="anchor" name="4203b8e6b8eb281b926262c00c67bfef"></a><!-- doxytag: member="sql::list" ref="4203b8e6b8eb281b926262c00c67bfef" args="(TagLib::StringList *tags)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sql::list           </td>
+          <td>(</td>
+          <td class="paramtype">TagLib::StringList *&nbsp;</td>
+          <td class="paramname"> <em>tags</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+list all tags. <dl compact><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[out]</tt>&nbsp;</td><td valign="top"><em>tags</em>&nbsp;</td><td>list of tags </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bd4b6511475b31ec4777e71cd6d9f8d7"></a><!-- doxytag: member="sql::list" ref="bd4b6511475b31ec4777e71cd6d9f8d7" args="(TagLib::StringList *tags, sqlite3 *db)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sql::list           </td>
+          <td>(</td>
+          <td class="paramtype">TagLib::StringList *&nbsp;</td>
+          <td class="paramname"> <em>tags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sqlite3 *&nbsp;</td>
+          <td class="paramname"> <em>db</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd><a class="el" href="classsql.html#4203b8e6b8eb281b926262c00c67bfef">list</a> </dd></dl>
+
+</div>
+</div><p>
 <hr>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="db_8h-source.html">db.h</a><li>db.cpp</ul>
-<hr size="1"><address style="text-align: right;"><small>Generated on Mon Oct 22 09:53:26 2007 for mtag by&nbsp;
+<hr size="1"><address style="text-align: right;"><small>Generated on Tue Oct 23 18:12:14 2007 for mtag by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.2 </small></address>
 </body>

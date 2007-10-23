@@ -11,5 +11,6 @@ USAGE:
 	run "mtag -x myfavsong" to get all your favorite songs
 	run "mtag -d myfavsong  /path/to/music/file.mp3" if you don't like this song anymore
 	run "mtag -c /path/to/music/file.flac" to clear all tags from /path/to/music/file.flac
+	run "mtag -l" to list all tags
 
 	run "mtag -x party | mpc add" to add oll your partysongs to mpd's running playlist

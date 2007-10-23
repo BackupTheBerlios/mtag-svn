@@ -86,4 +86,16 @@ class sql
 		 * @see wipePath
 		 */
 		static int wipePath(const char* path, sqlite3* db);
+		
+		/**
+		 * list all tags.
+		 * @param [out] tags list of tags
+		*/
+		static int list(TagLib::StringList *tags);
+		
+		/**
+		 * @see list
+		 */
+		static int list(TagLib::StringList *tags, sqlite3* db);
+		
 };

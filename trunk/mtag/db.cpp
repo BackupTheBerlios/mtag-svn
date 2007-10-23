@@ -24,12 +24,12 @@
 
 using namespace std;
 
-int search_callback(void *filesp, int argc, char **argv, char **colnames)
+int search_callback_listappend(void *listp, int argc, char **argv, char **colnames)
 {
-	TagLib::StringList *files = (TagLib::StringList *) filesp;
+	TagLib::StringList *list = (TagLib::StringList *)listp;
 	for (int i = 0; i < argc; i++)
 	{
-		files->append(argv[i]);
+		list->append(argv[i]);
 	}
 	return EXIT_SUCCESS;
 }
@@ -96,7 +96,7 @@ int sql::search(const char* tag, TagLib::StringList *files, sqlite3* db)
 	string s("SELECT DISTINCT filename FROM tags WHERE tag='");
 	s += tag;
 	s += "' ORDER BY filename ASC;";
-	return sqlite3_exec(db, s.c_str(), search_callback, files, NULL);
+	return sqlite3_exec(db, s.c_str(), search_callback_listappend, files, NULL);
 }
 
 int sql::search(const char* tag, TagLib::StringList *files)
@@ -130,6 +130,22 @@ int sql::wipePath(const char* path)
 	if(openDB(&db) != EXIT_SUCCESS)
 		return EXIT_FAILURE;
 	int res = wipePath(path, db);
+	closeDB(db);
+	return res;
+}
+
+int sql::list(TagLib::StringList *tags, sqlite3* db)
+{
+	string s("SELECT DISTINCT tag FROM tags ORDER BY filename ASC;");
+	return sqlite3_exec(db, s.c_str(), search_callback_listappend, tags, NULL);
+}
+
+int sql::list(TagLib::StringList *tags)
+{
+	sqlite3* db;
+	if(openDB(&db) != EXIT_SUCCESS)
+		return EXIT_FAILURE;
+	int res = list(tags, db);
 	closeDB(db);
 	return res;
 }

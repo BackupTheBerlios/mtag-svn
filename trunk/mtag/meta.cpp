@@ -140,3 +140,8 @@ int meta::search(const char *tag, TagLib::StringList *files)
 {
 	return sql::search(tag, files);
 }
+
+int meta::list(TagLib::StringList *tags)
+{
+	return sql::list(tags);
+}
