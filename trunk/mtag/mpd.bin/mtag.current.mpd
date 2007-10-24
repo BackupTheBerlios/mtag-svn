@@ -1,0 +1,3 @@
+#! /bin/bash
+
+mtag "$@" "${MTAG_MPDBASE}/$(mpc --format %file% | head -n1)"

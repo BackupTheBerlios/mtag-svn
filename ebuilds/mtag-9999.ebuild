@@ -12,10 +12,11 @@ ESVN_REPO_URI="http://svn.berlios.de/svnroot/repos/mtag/trunk/mtag"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="doc"
+IUSE="mpd doc"
 
 RDEPEND="media-libs/taglib
-	>=dev-db/sqlite-3.3.12"
+	>=dev-db/sqlite-3.3.12
+	mpd? ( media-sound/mpc )"
 DEPEND="dev-util/cmake
 	doc? ( app-doc/doxygen )
 	${RDEPEND}"
@@ -30,6 +31,9 @@ src_compile() {
 
 src_install() {
 	dobin mtag
+	if use mpd; then
+		dobin mpd.bin/*
+	fi
 	dodoc README ChangeLog AUTHORS
 	if use doc; then
 		dohtml html/*
