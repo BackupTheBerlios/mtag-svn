@@ -44,7 +44,6 @@ int meta::setTags(char* filename, TagLib::StringList tags)
 		return tagger::setTags(filename, tags);
 	string ap = utils::absPath(filename);
 	sql::clearTags(ap.c_str(), db);
-	cout << ap << endl;
 	for (TagLib::StringList::Iterator it = tags.begin(); it != tags.end(); it++)
 		sql::addTag(ap.c_str(), (*it).toCString(), db);
 	sql::closeDB(db);
