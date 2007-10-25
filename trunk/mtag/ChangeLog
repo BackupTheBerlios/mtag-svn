@@ -1,5 +1,4 @@
-2007/10/25	mtag-2 released
-		search tags with SQL: tag like $tag
+2007/10/25	search tags with SQL: tag like $tag
 			-> user is allowd to search for tag% to get tag.* etc.
 		reimplement getopt. now supporting longoptions
 		fix sql injection bug
