@@ -26,7 +26,8 @@ void usage(char* arg0)
 {
 	cout << "mTag: the fast media tag lib" << endl;
 	cout << endl;
-	cout << "usage: " << arg0 << " [-z path] [-b db] [-l] [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
+	cout << "usage: " << arg0 << " [-v] [-z path] [-b db] [-l] [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
+	cout << "	-v	verbose" <<endl;
 	cout << "	-b db	database file (default: $MTAG_DB)" <<endl;
 	cout << "	-z path	strip leading path (default: $MTAG_STRIPPATH)" <<endl;
 	cout << "	-l	list all tags" <<endl;
@@ -43,6 +44,7 @@ void usage(char* arg0)
 
 int main(int argc, char *argv[])
 {
+	utils::setVerbose(false);
 	string p;
 	if (getenv("MTAG_DB"))
 	{
@@ -61,19 +63,19 @@ int main(int argc, char *argv[])
 	bool needshow = false;
 	TagLib::StringList foundfiles;
 	TagLib::StringList tags;
-	while ((optchar = getopt(argc, argv, "+a:b:cd:hls:y:x:z:")) > 0) {
+	while ((optchar = getopt(argc, argv, "+a:b:cd:hls:vx:y:z:")) > 0) {
 		switch(optchar)
 		{
-			case 'b':
-				sql::setDataBase(optarg);
-				break;
-        		case 'a':
+			case 'a':
 				needusage = false;
 				show = false;
 				for(int i = 1; i < argc; i++)
 				{
 					meta::addTag(argv[i], optarg);
 				}
+				break;
+			case 'b':
+				sql::setDataBase(optarg);
 				break;
 			case 'c':
 				needusage = false;
@@ -91,14 +93,22 @@ int main(int argc, char *argv[])
 					meta::delTag(argv[i], optarg);
 				}
 				break;
+			case 'h':
+						usage(argv[0]);
+				return EXIT_SUCCESS;
+				break;
+			case 'l':
+				needusage = false;
+				meta::list(&tags);
+				cout << tags.toString("\n") << endl;
+				break;
 			case 's':
 				if (argc > 2)
 					needusage = false;
 				needshow=true;
 				break;
-			case 'y':
-				needusage = false;
-				meta::syncdir(optarg);
+			case 'v':
+				utils::setVerbose(true);
 				break;
 			case 'x':
 				if (argc > 2)
@@ -107,17 +117,12 @@ int main(int argc, char *argv[])
 				for (TagLib::StringList::Iterator it = foundfiles.begin(); it != foundfiles.end(); it++)
 					cout << utils::stripPath((*it).toCString()) << endl;
 				break;
+			case 'y':
+				needusage = false;
+				meta::syncdir(optarg);
+				break;
 			case 'z':
 				utils::setStripPath(optarg);
-				break;
-			case 'l':
-				needusage = false;
-				meta::list(&tags);
-				cout << tags.toString("\n") << endl;
-				break;
-			case 'h':
-				usage(argv[0]);
-				return EXIT_SUCCESS;
 				break;
 		}
 	}

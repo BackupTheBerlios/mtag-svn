@@ -22,7 +22,25 @@ class utils
 {
 	private:
 		static string strippath;
+		static bool verbose;
 	public:
+		/**
+		 * sets verbose output.
+		 * @param[in] flag
+		 */
+		static bool setVerbose(const bool flag);
+		
+		/**
+		 * prints out s if verbose
+		 * @param [in] s
+		 */
+		static void vout(const char* s);
+		
+		/**
+		 * @see vout
+		 */
+		static void vout(const string s);
+		
 		/**
 		 * build an absolut path from path)
 		 * @param [in] path path

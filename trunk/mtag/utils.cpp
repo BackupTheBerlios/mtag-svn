@@ -21,6 +21,24 @@
 
 using namespace std;
 
+bool utils::verbose;
+
+bool utils::setVerbose(const bool flag)
+{
+	verbose = flag;
+}
+
+void utils::vout(const char* s)
+{
+	cout << s << endl;
+}
+
+void utils::vout(const string s)
+{
+	cout << s << endl;
+}
+
+
 string utils::absPath(const char* path){
 	string p = path;
 	if (p.find("/") != 0)

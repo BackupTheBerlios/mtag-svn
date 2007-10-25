@@ -24,6 +24,7 @@ class sql
 {
 	private:
 		static const char *database;
+		static bool created;
 	public:
 		
 		/**

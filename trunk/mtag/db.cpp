@@ -20,6 +20,8 @@
 /* For taglib */
 #include <fileref.h>
 
+#include "utils.h"
+
 #include "db.h"
 
 using namespace std;
@@ -34,6 +36,7 @@ int search_callback_listappend(void *listp, int argc, char **argv, char **colnam
 	return EXIT_SUCCESS;
 }
 
+bool sql::created = false;
 
 int sql::openDB(sqlite3 **db)
 {
@@ -41,9 +44,16 @@ int sql::openDB(sqlite3 **db)
 	{
 		return EXIT_FAILURE;
 	}
-	sqlite3_exec(*db, "CREATE TABLE tags (filename TEXT, tag TEXT);", NULL, NULL, NULL);
-	sqlite3_exec(*db, "CREATE INDEX tagsByFile ON tags(filename ASC);", NULL, NULL, NULL);
-	sqlite3_exec(*db, "CREATE INDEX tagsByTags ON tags(tag ASC);", NULL, NULL, NULL);
+	if (!created)
+	{
+		sqlite3_exec(*db, "CREATE TABLE tags (filename TEXT, tag TEXT);", NULL, NULL, NULL);
+		utils::vout("CREATE TABLE tags (filename TEXT, tag TEXT);");
+		sqlite3_exec(*db, "CREATE INDEX tagsByFile ON tags(filename ASC);", NULL, NULL, NULL);
+		utils::vout("CREATE INDEX tagsByFile ON tags(filename ASC);");
+		sqlite3_exec(*db, "CREATE INDEX tagsByTags ON tags(tag ASC);", NULL, NULL, NULL);
+		utils::vout("CREATE INDEX tagsByTags ON tags(tag ASC);");
+		created = true;
+	}
 	return EXIT_SUCCESS;
 }
 
