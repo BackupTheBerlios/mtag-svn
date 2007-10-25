@@ -18,7 +18,7 @@
 /* local includes */
 #include "meta.h"
 #include "utils.h"
-#include "db.h"
+#include "sql.h"
 
 using namespace std;
 

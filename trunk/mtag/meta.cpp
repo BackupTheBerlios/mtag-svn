@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "tagger.h"
-#include "db.h"
+#include "sql.h"
 #include "utils.h"
 
 /* For taglib */
