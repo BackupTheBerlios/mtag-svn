@@ -16,11 +16,10 @@
 #include <getopt.h>
 
 /* local includes */
+#include "config.h"
 #include "meta.h"
 #include "utils.h"
 #include "sql.h"
-
-#define VERSION "$HEAD$"
 
 using namespace std;
 
