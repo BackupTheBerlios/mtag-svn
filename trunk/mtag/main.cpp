@@ -13,12 +13,14 @@
 #include <tag.h>
 
 /* For getopts */
-#include <unistd.h>
+#include <getopt.h>
 
 /* local includes */
 #include "meta.h"
 #include "utils.h"
 #include "sql.h"
+
+#define VERSION "$HEAD$"
 
 using namespace std;
 
@@ -26,20 +28,19 @@ void usage(char* arg0)
 {
 	cout << "mTag: the fast media tag lib" << endl;
 	cout << endl;
-	cout << "usage: " << arg0 << " [-v] [-z path] [-b db] [-l] [-a tag] [-d tag] [-c] [-y] [-s] files" << endl;
-	cout << "	-v	verbose" <<endl;
-	cout << "	-b db	database file (default: $MTAG_DB)" <<endl;
-	cout << "	-z path	strip leading path (default: $MTAG_STRIPPATH)" <<endl;
-	cout << "	-l	list all tags" <<endl;
-	cout << "	-a tag	add tag" <<endl;
-	cout << "	-d tag	delete tag" <<endl;
-	cout << "	-c	clear tags" <<endl;
-	cout << "	-s	show tag (default)" <<endl;
-	cout << "	-y dir	sync dir" <<endl;
-	cout << "	-x tag	search for tag" <<endl;
-	cout << "	-h	show this message" <<endl;
-	cout << endl;
-	cout << "	-b and -z should be set first" << endl;
+	cout << "usage: " << arg0 << " [-chlsvy] [-ad tag] [-b db] [-z path] files" << endl;
+	cout << "usage: " << arg0 << " [-h]" << endl;
+	cout << "	-l/--list		list all tags" <<endl;
+	cout << "	-a/--add tag		add tag" <<endl;
+	cout << "	-d/--delete tag		delete tag" <<endl;
+	cout << "	-c/--clear		clear tags" <<endl;
+	cout << "	-s/--show		show tag (default)" <<endl;
+	cout << "	-x/--search tag		search for tag" <<endl;
+	cout << "	-y/--sync dir		sync dir" <<endl;
+	cout << "	-v/--verbose		verbose" <<endl;
+	cout << "	-b/--database db	database file (default: $MTAG_DB)" <<endl;
+	cout << "	-z/--strip path		strip leading path (default: $MTAG_STRIPPATH)" <<endl;
+	cout << "	-h/--help		show this message" <<endl;
 }
 
 int main(int argc, char *argv[])
@@ -58,29 +59,73 @@ int main(int argc, char *argv[])
 		utils::setStripPath(getenv("MTAG_STRIPPATH"));
 	opterr = 0;
 	int optchar;
+	int long_index;
 	bool needusage = true;
 	bool show = true;
 	bool needshow = false;
 	TagLib::StringList foundfiles;
 	TagLib::StringList tags;
-	while ((optchar = getopt(argc, argv, "+a:b:cd:hls:vx:y:z:")) > 0) {
+	
+	const char *optstring = ":1a:b:cd:hls:vx:y:z:";
+	
+	static struct option long_options[] = {
+		{"version", no_argument, NULL, '1'},
+		{"add", required_argument, NULL, 'a'},
+		{"database", required_argument, NULL, 'b'},
+		{"clear", required_argument, NULL, 'c'},
+		{"delete", required_argument, NULL, 'd'},
+		{"help", no_argument, NULL, 'h'},
+		{"list", no_argument, NULL, 'l'},
+		{"show", required_argument, NULL, 's'},
+		{"verbose", no_argument, NULL, 'v'},
+		{"search", required_argument, NULL, 'x'},
+		{"sync", required_argument, NULL, 'y'},
+		{0, 0, 0, 0}
+	};
+	
+	/* 
+		split getopt into two phases:
+		1) get env setting options
+		2) do work
+	*/
+	
+	while ((optchar = getopt_long(argc, argv, optstring, long_options, &long_index)) > 0) {
+		switch(optchar)
+		{
+			case '1':
+				cout << argv[0] << " version: " << VERSION << endl;
+				return EXIT_SUCCESS;
+			case 'b':
+				sql::setDataBase(optarg);
+				break;
+			case 'v':
+				utils::setVerbose(true);
+				break;
+			case 'z':
+				utils::setStripPath(optarg);
+				break;
+			case ':':
+				usage(argv[0]);
+				return EXIT_FAILURE;
+				break;
+		}
+	}
+	optind = 0; // restart getopt
+	while ((optchar = getopt_long(argc, argv, optstring, long_options, &long_index)) > 0) {
 		switch(optchar)
 		{
 			case 'a':
 				needusage = false;
 				show = false;
-				for(int i = 1; i < argc; i++)
+				for(int i = optind + 1; i < argc; i++)
 				{
 					meta::addTag(argv[i], optarg);
 				}
 				break;
-			case 'b':
-				sql::setDataBase(optarg);
-				break;
 			case 'c':
 				needusage = false;
 				show = false;
-				for(int i = 1; i < argc; i++)
+				for(int i = optind + 1; i < argc; i++)
 				{
 					meta::clearTags(argv[i]);
 				}
@@ -88,13 +133,13 @@ int main(int argc, char *argv[])
 			case 'd':
 				needusage = false;
 				show = false;
-				for(int i = 1; i < argc; i++)
+				for(int i = optind + 1; i < argc; i++)
 				{
 					meta::delTag(argv[i], optarg);
 				}
 				break;
 			case 'h':
-						usage(argv[0]);
+				usage(argv[0]);
 				return EXIT_SUCCESS;
 				break;
 			case 'l':
@@ -103,16 +148,11 @@ int main(int argc, char *argv[])
 				cout << tags.toString("\n") << endl;
 				break;
 			case 's':
-				if (argc > 2)
-					needusage = false;
+				needusage = false;
 				needshow=true;
 				break;
-			case 'v':
-				utils::setVerbose(true);
-				break;
 			case 'x':
-				if (argc > 2)
-					needusage = false;
+				needusage = false;
 				meta::search(optarg, &foundfiles);
 				for (TagLib::StringList::Iterator it = foundfiles.begin(); it != foundfiles.end(); it++)
 					cout << utils::stripPath((*it).toCString()) << endl;
@@ -121,11 +161,17 @@ int main(int argc, char *argv[])
 				needusage = false;
 				meta::syncdir(optarg);
 				break;
-			case 'z':
-				utils::setStripPath(optarg);
+			case ':':
+				usage(argv[0]);
+				return EXIT_FAILURE;
+				break;
+			case '?':
+				usage(argv[0]);
+				return EXIT_FAILURE;
 				break;
 		}
 	}
+		
 	if (show || needshow)
 	{
 		for(int i = 1; i < argc; i++)

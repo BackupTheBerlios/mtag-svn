@@ -25,6 +25,18 @@ class sql
 	private:
 		static const char *database;
 		static bool created;
+		
+		/**
+		 * clean SQL string to prevent SQL injection!
+		 * @param [in] sql sql string
+		 * @return clean sql string
+		 */
+		static const string cleansql(const char* sql);
+		
+		/**
+		 * @see cleansl
+		 */
+		static const string cleansql(const string sql);
 	public:
 		
 		/**
@@ -97,6 +109,5 @@ class sql
 		/**
 		 * @see list
 		 */
-		static int list(TagLib::StringList *tags, sqlite3* db);
-		
+		static int list(TagLib::StringList *tags, sqlite3* db);		
 };

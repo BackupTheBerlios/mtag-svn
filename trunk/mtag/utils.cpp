@@ -25,17 +25,27 @@ bool utils::verbose;
 
 bool utils::setVerbose(const bool flag)
 {
-	verbose = flag;
+	if (verbose) {
+		if (!flag)
+			utils::vout("switch off verbose output");
+		verbose = flag;
+	} else {
+		verbose = flag;
+		if (flag)
+			utils::vout("switch on verbose output");
+	}
 }
 
 void utils::vout(const char* s)
 {
-	cout << s << endl;
+	if (verbose)
+		cout << s << endl;
 }
 
 void utils::vout(const string s)
 {
-	cout << s << endl;
+	if (verbose)
+		cout << s << endl;
 }
 
 

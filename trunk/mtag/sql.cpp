@@ -44,6 +44,7 @@ int sql::openDB(sqlite3 **db)
 	{
 		return EXIT_FAILURE;
 	}
+	utils::vout("databse opened");
 	if (!created)
 	{
 		sqlite3_exec(*db, "CREATE TABLE tags (filename TEXT, tag TEXT);", NULL, NULL, NULL);
@@ -59,6 +60,7 @@ int sql::openDB(sqlite3 **db)
 
 int sql::closeDB(sqlite3* db)
 {
+	utils::vout("databse closed");
 	return sqlite3_close(db);
 }
 
@@ -69,6 +71,8 @@ int sql::addTag(const char* filename, const char* tag, sqlite3* db)
 	s.append("', '");
 	s.append(tag);
 	s.append("');");
+	s = cleansql(s);
+	utils::vout(s);
 	return sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
 }
 
@@ -87,6 +91,8 @@ int sql::clearTags(const char* filename, sqlite3* db)
 	string s("DELETE FROM tags WHERE filename='");
 	s.append(filename);
 	s.append("';");
+	s = cleansql(s);
+	utils::vout(s);
 	return sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
 }
 
@@ -106,6 +112,8 @@ int sql::search(const char* tag, TagLib::StringList *files, sqlite3* db)
 	string s("SELECT DISTINCT filename FROM tags WHERE tag='");
 	s += tag;
 	s += "' ORDER BY filename ASC;";
+	s = cleansql(s);
+	utils::vout(s);
 	return sqlite3_exec(db, s.c_str(), search_callback_listappend, files, NULL);
 }
 
@@ -131,6 +139,8 @@ int sql::wipePath(const char* path, sqlite3* db)
 	string s("DELETE FROM tags WHERE filename like '");
 	s += path;
 	s += "%';";
+	s = cleansql(s);
+	utils::vout(s);
 	return sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
 }
 
@@ -147,6 +157,7 @@ int sql::wipePath(const char* path)
 int sql::list(TagLib::StringList *tags, sqlite3* db)
 {
 	string s("SELECT DISTINCT tag FROM tags ORDER BY filename ASC;");
+	utils::vout(s);
 	return sqlite3_exec(db, s.c_str(), search_callback_listappend, tags, NULL);
 }
 
@@ -158,4 +169,22 @@ int sql::list(TagLib::StringList *tags)
 	int res = list(tags, db);
 	closeDB(db);
 	return res;
+}
+
+const string sql::cleansql(const string sql)
+{
+	string s(sql);
+	uint p;
+	if ((p = s.find(';')) != string::npos)
+		s.erase(p);
+	return s;
+}
+
+const string sql::cleansql(const char* sql)
+{
+	string s(sql);
+	uint p;
+	if ((p = s.find(';')) != string::npos)
+		s.erase(p);
+	return s;
 }
