@@ -109,7 +109,7 @@ int sql::clearTags(const char* filename)
 
 int sql::search(const char* tag, TagLib::StringList *files, sqlite3* db)
 {
-	string s("SELECT DISTINCT filename FROM tags WHERE tag='");
+	string s("SELECT DISTINCT filename FROM tags WHERE tag like '");
 	s += tag;
 	s += "' ORDER BY filename ASC;";
 	s = cleansql(s);

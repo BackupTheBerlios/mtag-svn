@@ -1,4 +1,6 @@
-2007/10/23	reimplement getopt. now supporting longoptions
+2007/10/23	search tags with SQL: tag like $tag
+			-> user is allowd to search for tag% to get tag.* etc.
+		reimplement getopt. now supporting longoptions
 		fix sql injection bug
 2007/10/23	implement "mtag -l" to list all tags
 2007/10/22	edit README

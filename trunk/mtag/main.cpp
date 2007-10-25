@@ -27,9 +27,9 @@ using namespace std;
 void usage(char* arg0)
 {
 	cout << "mTag: the fast media tag lib" << endl;
+	cout << "version: " << VERSION << endl;
 	cout << endl;
 	cout << "usage: " << arg0 << " [-chlsvy] [-ad tag] [-b db] [-z path] files" << endl;
-	cout << "usage: " << arg0 << " [-h]" << endl;
 	cout << "	-l/--list		list all tags" <<endl;
 	cout << "	-a/--add tag		add tag" <<endl;
 	cout << "	-d/--delete tag		delete tag" <<endl;
