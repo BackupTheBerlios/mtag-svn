@@ -10,7 +10,7 @@ svn up
 (cd trunk/mtag ; make clean)
 (cd trunk/mtag ; doxygen)
 echo "$(date +%Y/%m/%d)	mtag-${RELEASE} released" > changlog.tmp
-cat trunk/mtag/ChangeLog >> changlog.tmp
+cat trunk/mtag/ChangeLog | sed "s:$(date +%Y/%m/%d):\t:" >> changlog.tmp
 mv changlog.tmp trunk/mtag/ChangeLog
 
 svn cp trunk/mtag tags/mtag-${RELEASE}
