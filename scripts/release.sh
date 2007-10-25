@@ -54,7 +54,7 @@ md5sum * > MD5SUM
 cd ..
 
 ## copy ebuild from basic ebuild
-svn cp ebuilds/mtag-0_p0.ebuild ebuilds/mtag-${RELEASE}.ebuild
+svn cp ebuilds/mtag-0_pre0.ebuild ebuilds/mtag-${RELEASE}.ebuild
 
 ## check release in
 echo "\$ svn st"
