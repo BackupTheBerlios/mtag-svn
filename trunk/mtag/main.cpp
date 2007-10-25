@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 	TagLib::StringList foundfiles;
 	TagLib::StringList tags;
 	
-	const char *optstring = ":1a:b:cd:hls:vx:y:z:";
+	const char *optstring = ":1a:b:cd:hlsvx:y:z:";
 	
 	static struct option long_options[] = {
 		{"version", no_argument, NULL, '1'},
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 		{"delete", required_argument, NULL, 'd'},
 		{"help", no_argument, NULL, 'h'},
 		{"list", no_argument, NULL, 'l'},
-		{"show", required_argument, NULL, 's'},
+		{"show", no_argument, NULL, 's'},
 		{"verbose", no_argument, NULL, 'v'},
 		{"search", required_argument, NULL, 'x'},
 		{"sync", required_argument, NULL, 'y'},
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
 		
 	if (show || needshow)
 	{
-		for(int i = 1; i < argc; i++)
+		for(int i = optind; i < argc; i++)
 		{
 			TagLib::StringList tags;
 			if (meta::getTags(argv[i], &tags) == EXIT_SUCCESS)
