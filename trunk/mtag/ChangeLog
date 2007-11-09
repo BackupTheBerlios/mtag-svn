@@ -1,4 +1,5 @@
-2007/11/09	fix some bugs with getopt
+2007/11/09	add rating
+		fix some bugs with getopt
 		code improvement
 2007/10/25	mtag-2 released
 		search tags with SQL: tag like $tag

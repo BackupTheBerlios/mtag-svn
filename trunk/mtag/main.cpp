@@ -28,19 +28,21 @@ void usage(char* arg0)
 	cout << "mTag: the fast media tag lib" << endl;
 	cout << "version: " << VERSION << endl;
 	cout << endl;
-	cout << "usage: " << arg0 << " [-chlsvy] [-ad tag] [-b db] [-z path] files" << endl;
-	cout << "	-l/--list		list all tags" <<endl;
-	cout << "	-a/--add tag		add tag" <<endl;
-	cout << "	-d/--delete tag		delete tag" <<endl;
-	cout << "	-c/--clear		clear tags" <<endl;
-	cout << "	-s/--show		show tag (default)" <<endl;
-	cout << "	-x/--search tag		search for tag" <<endl;
-	cout << "	-y/--sync dir		sync dir" <<endl;
-	cout << "	-v/--verbose		verbose" <<endl;
-	cout << "	-b/--database db	database file (default: $MTAG_DB)" <<endl;
-	cout << "	-z/--strip path		strip leading path (default: $MTAG_STRIPPATH)" <<endl;
-	cout << "	--version		print version" <<endl;
-	cout << "	-h/--help		show this message" <<endl;
+	cout << "usage: " << arg0 << " [-012345chlsvy] [-ad tag] [-b db] [-z path] files" << endl;
+	cout << "	-0			clear rating" << endl;
+	cout << "	-12345			set rating" << endl;
+	cout << "	-l/--list		list all tags" << endl;
+	cout << "	-a/--add tag		add tag" << endl;
+	cout << "	-d/--delete tag		delete tag" << endl;
+	cout << "	-c/--clear		clear tags" << endl;
+	cout << "	-s/--show		show tag (default)" << endl;
+	cout << "	-x/--search tag		search for tag" << endl;
+	cout << "	-y/--sync dir		sync dir" << endl;
+	cout << "	-v/--verbose		verbose" << endl;
+	cout << "	-b/--database db	database file (default: $MTAG_DB)" << endl;
+	cout << "	-z/--strip path		strip leading path (default: $MTAG_STRIPPATH)" << endl;
+	cout << "	--version		print version" << endl;
+	cout << "	-h/--help		show this message" << endl;
 }
 
 int main(int argc, char *argv[])
@@ -66,7 +68,7 @@ int main(int argc, char *argv[])
 	TagLib::StringList foundfiles;
 	TagLib::StringList tags;
 	
-	const char *optstring = ":qa:b:cd:hlsvx:y:z:";
+	const char *optstring = ":012345a:b:cd:hlqsvx:y:z:";
 	
 	static struct option long_options[] = {
 		{"version", no_argument, NULL, 'q'},
@@ -92,12 +94,12 @@ int main(int argc, char *argv[])
 	while ((optchar = getopt_long(argc, argv, optstring, long_options, &long_index)) > 0) {
 		switch(optchar)
 		{
-			case 'q':
-				cout << argv[0] << " version: " << VERSION << endl;
-				return EXIT_SUCCESS;
 			case 'b':
 				sql::setDataBase(optarg);
 				break;
+			case 'q':
+				cout << argv[0] << " version: " << VERSION << endl;
+				return EXIT_SUCCESS;
 			case 'v':
 				utils::setVerbose(true);
 				break;
@@ -112,8 +114,99 @@ int main(int argc, char *argv[])
 	}
 	optind = 0; // restart getopt
 	while ((optchar = getopt_long(argc, argv, optstring, long_options, &long_index)) > 0) {
+		TagLib::StringList tags2clear;
 		switch(optchar)
 		{
+			case '0':
+				utils::vout("clear rate");
+				needusage = false;
+				show = false;
+				tags2clear.append("1");
+				tags2clear.append("2");
+				tags2clear.append("3");
+				tags2clear.append("4");
+				tags2clear.append("5");
+				for(int i = 2; i < argc; i++)
+				{
+					meta::delTag(argv[i], tags2clear);
+					
+				}
+				break;
+			case '1':
+				utils::vout("rate: 1");
+				needusage = false;
+				show = false;
+				tags2clear.append("2");
+				tags2clear.append("3");
+				tags2clear.append("4");
+				tags2clear.append("5");
+				for(int i = 2; i < argc; i++)
+				{
+					meta::delTag(argv[i], tags2clear);
+					meta::addTag(argv[i], "1");
+					
+				}
+				break;
+			case '2':
+				utils::vout("rate: 2");
+				needusage = false;
+				show = false;
+				tags2clear.append("1");
+				tags2clear.append("3");
+				tags2clear.append("4");
+				tags2clear.append("5");
+				for(int i = 2; i < argc; i++)
+				{
+					meta::delTag(argv[i], tags2clear);
+					meta::addTag(argv[i], "2");
+					
+				}
+				break;
+			case '3':
+				utils::vout("rate: 3");
+				needusage = false;
+				show = false;
+				tags2clear.append("1");
+				tags2clear.append("2");
+				tags2clear.append("4");
+				tags2clear.append("5");
+				for(int i = 2; i < argc; i++)
+				{
+					meta::delTag(argv[i], tags2clear);
+					meta::addTag(argv[i], "3");
+					
+				}
+				break;
+			case '4':
+				utils::vout("rate: 4");
+				needusage = false;
+				show = false;
+				tags2clear.append("1");
+				tags2clear.append("2");
+				tags2clear.append("3");
+				tags2clear.append("5");
+				for(int i = 2; i < argc; i++)
+				{
+					meta::delTag(argv[i], tags2clear);
+					meta::addTag(argv[i], "4");
+					
+				}
+				break;
+			case '5':
+				utils::vout("rate: 5");
+				needusage = false;
+				show = false;
+				tags2clear.append("1");
+				tags2clear.append("2");
+				tags2clear.append("3");
+				tags2clear.append("4");
+				for(int i = 2; i < argc; i++)
+				{
+					meta::delTag(argv[i], tags2clear);
+					meta::addTag(argv[i], "5");
+					
+				}
+				break;
 			case 'a':
 				utils::vout("add tag");
 				needusage = false;
