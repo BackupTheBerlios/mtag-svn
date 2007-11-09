@@ -1,0 +1,13 @@
+# KDevelop Custom Project File List
+CMakeLists.txt
+Makefile
+config.h
+main.cpp
+meta.cpp
+meta.h
+sql.cpp
+sql.h
+tagger.cpp
+tagger.h
+utils.cpp
+utils.h
