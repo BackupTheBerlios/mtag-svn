@@ -1,4 +1,7 @@
-# KDevelop Custom Project File List
+meta.h
+sql.h
+tagger.h
+utils.h
 CMakeLists.txt
 Makefile
 config.h

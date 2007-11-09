@@ -62,10 +62,25 @@ class meta
 		static int addTag(char* filename, TagLib::String tag);
 		
 		/**
+		 * add tags to file
+		 * @param [in] filename target file
+		 * @param [in] tag list of tags to add
+		 */
+		static int addTag(char* filename, TagLib::StringList tag);
+		
+		/**
 		 * remove tag from file
 		 * @param [in] filename target file
 		 * @param [in] tag tag to remove
-		 */static int delTag(char* filename, TagLib::String tag);
+		 */
+		static int delTag(char* filename, TagLib::String tag);
+		
+		/**
+		* remove tags from file
+		* @param [in] filename target file
+		* @param [in] tag list of tags to remove
+		*/
+		static int delTag(char* filename, TagLib::StringList tag);
 		
 		/**
 		 * sync dir with database.

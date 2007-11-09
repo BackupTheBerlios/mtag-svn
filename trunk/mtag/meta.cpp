@@ -61,25 +61,61 @@ int meta::clearTags(char* filename)
 	return EXIT_FAILURE;
 }
 
-int meta::addTag(char* filename, TagLib::String tag)
+int meta::addTag(char* filename, TagLib::StringList tag)
 {
+	utils::vout("add tags");
 	TagLib::StringList tags;
 	if (getTags(filename, &tags) != EXIT_SUCCESS)
 		return EXIT_FAILURE;
-	if (tags.find(tag) == tags.end())
-		tags.append(tag);
+	bool changed = false;
+	for (TagLib::StringList::Iterator it1 = tag.begin(); it1 != tag.end(); it1++)
+	{
+		if (tags.find(*it1) == tags.end())
+		{
+			changed = true;
+			tags.append(*it1);
+		}
+	}
+	if (!changed)
+		return EXIT_SUCCESS;
+	return setTags(filename, tags);
+}
+
+int meta::addTag(char* filename, TagLib::String tag)
+{
+	utils::vout("add tag");
+	TagLib::StringList tag1;
+	tag1.append(tag);
+	return addTag(filename, tag1);
+}
+
+int meta::delTag(char* filename, TagLib::StringList tag)
+{
+	utils::vout("del tags");
+	TagLib::StringList tags;
+	if (getTags(filename, &tags) != EXIT_SUCCESS)
+		return EXIT_FAILURE;
+	bool changed = false;
+	for (TagLib::StringList::Iterator it1 = tag.begin(); it1 != tag.end(); it1++)
+	{
+		TagLib::StringList::Iterator it = tags.find(*it1);
+		if (it != tags.end())
+		{
+			changed = true;
+			tags.erase(it);
+		}
+	}
+	if (!changed)
+		return EXIT_SUCCESS;
 	return setTags(filename, tags);
 }
 
 int meta::delTag(char* filename, TagLib::String tag)
 {
-	TagLib::StringList tags;
-	if (getTags(filename, &tags) != EXIT_SUCCESS)
-		return EXIT_FAILURE;
-	TagLib::StringList::Iterator it = tags.find(tag);
-	if (it != tags.end())
-		tags.erase(it);
-	return setTags(filename, tags);
+	utils::vout("del tag");
+	TagLib::StringList tag1;
+	tag1.append(tag);
+	return delTag(filename, tag1);
 }
 
 int meta::syncdir(const char *dirname, sqlite3* db)

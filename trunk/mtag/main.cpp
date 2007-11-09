@@ -39,6 +39,7 @@ void usage(char* arg0)
 	cout << "	-v/--verbose		verbose" <<endl;
 	cout << "	-b/--database db	database file (default: $MTAG_DB)" <<endl;
 	cout << "	-z/--strip path		strip leading path (default: $MTAG_STRIPPATH)" <<endl;
+	cout << "	--version		print version" <<endl;
 	cout << "	-h/--help		show this message" <<endl;
 }
 
@@ -65,10 +66,10 @@ int main(int argc, char *argv[])
 	TagLib::StringList foundfiles;
 	TagLib::StringList tags;
 	
-	const char *optstring = ":1a:b:cd:hlsvx:y:z:";
+	const char *optstring = ":qa:b:cd:hlsvx:y:z:";
 	
 	static struct option long_options[] = {
-		{"version", no_argument, NULL, '1'},
+		{"version", no_argument, NULL, 'q'},
 		{"add", required_argument, NULL, 'a'},
 		{"database", required_argument, NULL, 'b'},
 		{"clear", required_argument, NULL, 'c'},
@@ -91,7 +92,7 @@ int main(int argc, char *argv[])
 	while ((optchar = getopt_long(argc, argv, optstring, long_options, &long_index)) > 0) {
 		switch(optchar)
 		{
-			case '1':
+			case 'q':
 				cout << argv[0] << " version: " << VERSION << endl;
 				return EXIT_SUCCESS;
 			case 'b':
@@ -114,49 +115,57 @@ int main(int argc, char *argv[])
 		switch(optchar)
 		{
 			case 'a':
+				utils::vout("add tag");
 				needusage = false;
 				show = false;
-				for(int i = optind + 1; i < argc; i++)
+				for(int i = 3; i < argc; i++)
 				{
 					meta::addTag(argv[i], optarg);
 				}
 				break;
 			case 'c':
+				utils::vout("clear tags");
 				needusage = false;
 				show = false;
-				for(int i = optind + 1; i < argc; i++)
+				for(int i = 2; i < argc; i++)
 				{
 					meta::clearTags(argv[i]);
 				}
 				break;
 			case 'd':
+				utils::vout("del tag");
 				needusage = false;
 				show = false;
-				for(int i = optind + 1; i < argc; i++)
+				for(int i = 3; i < argc; i++)
 				{
 					meta::delTag(argv[i], optarg);
 				}
 				break;
 			case 'h':
+				utils::vout("help");
 				usage(argv[0]);
 				return EXIT_SUCCESS;
 				break;
 			case 'l':
+				utils::vout("list tags");
 				needusage = false;
 				meta::list(&tags);
 				cout << tags.toString("\n") << endl;
 				break;
 			case 's':
+				utils::vout("show tags");
 				needusage = false;
 				needshow=true;
 				break;
 			case 'x':
+				utils::vout("search tags");
 				needusage = false;
 				meta::search(optarg, &foundfiles);
 				for (TagLib::StringList::Iterator it = foundfiles.begin(); it != foundfiles.end(); it++)
 					cout << utils::stripPath((*it).toCString()) << endl;
 				break;
 			case 'y':
+				utils::vout("sync tags");
 				needusage = false;
 				meta::syncdir(optarg);
 				break;
